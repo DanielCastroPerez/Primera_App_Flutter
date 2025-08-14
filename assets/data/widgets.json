@@ -1,0 +1,23 @@
+[
+  {
+    "nombre": "Scaffold",
+    "descripcion": "Widget base para una pantalla que sigue las guías de diseño de Material Design. Permite incluir AppBar, Drawer, FloatingActionButton y más.",
+    "imagen": "assets/Scaffold.jpg",
+    "codigo": "Scaffold(\n  appBar: AppBar(title: Text('Título')),\n  body: Center(child: Text('Contenido')),\n  floatingActionButton: FloatingActionButton(\n    onPressed: () {},\n    child: Icon(Icons.add),\n  ),\n);",
+    "ruta": "/Page_Scaffold"
+  },
+  {
+    "nombre": "Container",
+    "descripcion": "Un widget contenedor versátil que puede contener otros widgets, controlar su tamaño, margen, padding, bordes y más.",
+    "imagen": "assets/colum.jpg",
+    "codigo": "Container(\n  padding: EdgeInsets.all(16),\n  margin: EdgeInsets.symmetric(vertical: 10),\n  decoration: BoxDecoration(\n    color: Colors.blue[100],\n    borderRadius: BorderRadius.circular(12),\n    border: Border.all(color: Colors.blue, width: 2),\n  ),\n  width: double.infinity,\n  child: Text(\n    'Este es un ejemplo de Container',\n    style: TextStyle(fontSize: 18),\n    textAlign: TextAlign.center,\n  ),\n);",
+    "ruta": "/Page_Scaffold"
+  },
+  {
+    "nombre": "AppBar",
+    "descripcion": "Una barra superior que generalmente contiene el título de la pantalla, botones de acción y navegación.",
+    "imagen": "assets/AppBar.jpg",
+    "codigo": "AppBar(\n  centerTitle: true,\n  title: Text('Aplicación AppBar'),\n  backgroundColor: Colors.orange,\n);",
+    "ruta": "/Page_Scaffold"
+  }
+]

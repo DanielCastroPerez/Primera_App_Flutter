@@ -1,0 +1,1370 @@
+[
+  {
+    "nombre": "Scaffold",
+    "descripcion": "Un widget fundamental de Material Design que proporciona una estructura básica para implementar el diseño visual de tu aplicación. Sirve como el 'lienzo' principal donde colocas otros widgets como la barra de aplicación, el cuerpo principal, el botón de acción flotante, etc.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "appBar",
+        "tipo": "AppBar",
+        "descripcion_extendida": "Una barra en la parte superior de la pantalla. Típicamente muestra el título de la aplicación, acciones y un botón de navegación (como el menú de hamburguesa o el botón de retroceso).",
+        "ejemplo_propiedad": "Scaffold(\n  appBar: AppBar(\n    title: const Text('Mi Aplicación'),\n  ),\n  // ... otras propiedades\n)"
+      },
+      {
+        "nombre": "body",
+        "tipo": "Widget",
+        "descripcion_extendida": "El contenido principal de la pantalla, ubicado debajo del `appBar` y cubriendo la mayor parte del área visible. Aquí es donde colocas la interfaz de usuario central de tu pantalla (listas, formularios, imágenes, etc.).",
+        "ejemplo_propiedad": "Scaffold(\n  body: Center(\n    child: Text('¡Hola, Mundo!'),\n  ),\n  // ... otras propiedades\n)"
+      },
+      {
+        "nombre": "floatingActionButton",
+        "tipo": "FloatingActionButton",
+        "descripcion_extendida": "Un botón circular que flota sobre el contenido del `body`, típicamente usado para la acción principal de la pantalla (ej. añadir un nuevo elemento, componer un correo).",
+        "ejemplo_propiedad": "Scaffold(\n  floatingActionButton: FloatingActionButton(\n    onPressed: () {\n      print('Botón flotante presionado');\n    },\n    child: const Icon(Icons.add),\n  ),\n  // ... otras propiedades\n)"
+      },
+      {
+        "nombre": "drawer",
+        "tipo": "Drawer",
+        "descripcion_extendida": "Un panel deslizante que se muestra desde el borde izquierdo de la pantalla (o derecho en RTL). Comúnmente utilizado para la navegación principal de la aplicación.",
+        "ejemplo_propiedad": "Scaffold(\n  drawer: Drawer(\n    child: ListView(\n      padding: EdgeInsets.zero,\n      children: const [\n        DrawerHeader(\n          decoration: BoxDecoration(\n            color: Colors.blue,\n          ),\n          child: Text('Encabezado del Drawer'),\n        ),\n        ListTile(title: Text('Opción 1')),\n        ListTile(title: Text('Opción 2')),\n      ],\n    ),\n  ),\n  // ... otras propiedades\n)"
+      },
+      {
+        "nombre": "bottomNavigationBar",
+        "tipo": "BottomNavigationBar",
+        "descripcion_extendida": "Una barra en la parte inferior de la pantalla que permite cambiar rápidamente entre un número pequeño de vistas de nivel superior (generalmente entre 3 y 5).",
+        "ejemplo_propiedad": "Scaffold(\n  bottomNavigationBar: BottomNavigationBar(\n    items: const [\n      BottomNavigationBarItem(\n        icon: Icon(Icons.home),\n        label: 'Inicio',\n      ),\n      BottomNavigationBarItem(\n        icon: Icon(Icons.settings),\n        label: 'Ajustes',\n      ),\n    ],\n    onTap: (index) { print('Ítem $index seleccionado'); },\n  ),\n  // ... otras propiedades\n)"
+      },
+      {
+        "nombre": "backgroundColor",
+        "tipo": "Color",
+        "descripcion_extendida": "El color de fondo del Scaffold. Por defecto, es el `scaffoldBackgroundColor` del tema de la aplicación.",
+        "ejemplo_propiedad": "Scaffold(\n  backgroundColor: Colors.grey.shade200,\n  body: const Center(child: Text('Fondo Gris Claro')),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "La base para casi todas las pantallas de una aplicación Flutter que siguen las guías de Material Design.",
+      "Organizar los elementos estructurales de la UI de una manera estándar y predecible."
+    ],
+    "constructores_comunes": [
+      "Scaffold()"
+    ],
+    "widgets_relacionados": [
+      "AppBar",
+      "FloatingActionButton",
+      "Drawer",
+      "BottomNavigationBar",
+      "MaterialApp (que contiene el Scaffold)"
+    ],
+    "cuando_no_usar": "No uses `Scaffold` si estás construyendo un widget muy pequeño y específico que no necesita una estructura de pantalla completa (ej. un elemento de una lista, un botón personalizado). Para esos casos, un `Container` o un widget más simple sería suficiente.",
+    "codigo": "Scaffold(\n  appBar: AppBar(title: const Text('Título')),\n  body: const Center(child: Text('Contenido')),\n  floatingActionButton: FloatingActionButton(\n    onPressed: () {},\n    child: const Icon(Icons.add),\n  ),\n);",
+    "imagen": "assets/Scaffold.jpg",
+    "ruta": "/Page_Scaffold"
+  },
+  {
+    "nombre": "AppBar",
+    "descripcion": "Una barra de herramientas de Material Design que se coloca típicamente en la parte superior de un `Scaffold`. Se usa para mostrar el título de la pantalla, iconos de acción, y puede contener un botón de navegación (como el de 'volver' o el de 'menú de hamburguesa').",
+    "propiedades_detalladas": [
+      {
+        "nombre": "title",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget principal que se muestra en el centro de la barra. Generalmente, es un widget `Text` que muestra el título de la pantalla actual. Puedes personalizar su estilo con `TextStyle`.",
+        "ejemplo_propiedad": "AppBar(\n  title: const Text('Mi Título'),\n)"
+      },
+      {
+        "nombre": "leading",
+        "tipo": "Widget",
+        "descripcion_extendida": "Un widget opcional que se muestra antes del `title` (a la izquierda) en la `AppBar`. Comúnmente, es un `IconButton` para un menú de navegación (`Icons.menu`) o una flecha de retroceso (`Icons.arrow_back`). Si un `Scaffold` tiene un `Drawer` o si hay una ruta previa en el navegador, Flutter a menudo provee automáticamente un botón `leading`.",
+        "ejemplo_propiedad": "AppBar(\n  leading: IconButton(\n    icon: const Icon(Icons.menu),\n    onPressed: () {\n      // Acción para abrir el Drawer\n      Scaffold.of(context).openDrawer();\n    },\n  ),\n  title: const Text('Menú Principal'),\n)"
+      },
+      {
+        "nombre": "actions",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "Una lista de widgets que se muestran después del `title` (a la derecha) en la `AppBar`. Usualmente son `IconButtons` para acciones comunes como búsqueda, compartir, o configuraciones. Se muestran en el orden en que se listan.",
+        "ejemplo_propiedad": "AppBar(\n  title: const Text('Acciones'),\n  actions: [\n    IconButton(icon: const Icon(Icons.search), onPressed: () { /* Acción de búsqueda */ }),\n    IconButton(icon: const Icon(Icons.settings), onPressed: () { /* Acción de configuración */ }),\n  ],\n)"
+      },
+      {
+        "nombre": "bottom",
+        "tipo": "PreferredSizeWidget",
+        "descripcion_extendida": "Un widget que se muestra directamente debajo de la `AppBar` principal. Es muy útil para integrar pestañas de navegación (`TabBar`) o cualquier otro widget que necesite anclarse en la parte inferior de la barra de aplicación.",
+        "ejemplo_propiedad": "AppBar(\n  title: const Text('Pestañas'),\n  bottom: const TabBar(\n    tabs: [\n      Tab(icon: Icon(Icons.home)),\n      Tab(icon: Icon(Icons.settings)),\n    ],\n  ),\n)"
+      },
+      {
+        "nombre": "backgroundColor",
+        "tipo": "Color",
+        "descripcion_extendida": "El color de fondo de la `AppBar`. Por defecto, es el `primaryColor` del tema de la aplicación. Puedes personalizarlo para que coincida con la paleta de colores de tu diseño.",
+        "ejemplo_propiedad": "AppBar(\n  backgroundColor: Colors.indigo.shade700,\n  title: const Text('Fondo Azul Oscuro'),\n)"
+      },
+      {
+        "nombre": "elevation",
+        "tipo": "double",
+        "descripcion_extendida": "La sombra visual debajo de la `AppBar`, que le da un efecto de elevación sobre el contenido. Un valor de `0.0` elimina la sombra. Un valor mayor hace la sombra más pronunciada.",
+        "ejemplo_propiedad": "AppBar(\n  elevation: 4.0, // Sombra estándar\n  title: const Text('Con Sombra'),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Mostrar el título de la pantalla actual o el nombre de la aplicación.",
+      "Proveer botones de navegación (atrás, menú) y acciones rápidas (búsqueda, configuración, guardar).",
+      "Integrar barras de pestañas (`TabBar`) para navegación secundaria."
+    ],
+    "constructores_comunes": [
+      "AppBar()"
+    ],
+    "widgets_relacionados": [
+      "Scaffold (el padre común de AppBar)",
+      "IconButton (usado frecuentemente en `leading` y `actions`)",
+      "TabBar (usado en la propiedad `bottom`)",
+      "Text (usado comúnmente en `title`)"
+    ],
+    "cuando_no_usar": "No uses `AppBar` si la pantalla no necesita una barra de herramientas en la parte superior, o si el diseño es completamente personalizado y no sigue las directrices de Material Design para una barra superior. En esos casos, podrías usar un `Container` o `Row` personalizado para lograr un efecto similar sin las funcionalidades y el estilo predefinidos de `AppBar`.",
+    "codigo": "AppBar(\n  centerTitle: true,\n  title: const Text('Aplicación AppBar'),\n  backgroundColor: Colors.orange,\n  actions: [\n    IconButton(\n      icon: const Icon(Icons.settings),\n      onPressed: () {},\n    ),\n  ],\n);",
+    "imagen": "assets/AppBar.jpg",
+    "ruta": "/Page_AppBar"
+  },
+  {
+    "nombre": "MaterialApp",
+    "descripcion": "Un widget que envuelve tu aplicación Flutter para proveer funcionalidades de Material Design. Es la base fundamental para configurar el tema visual de la app, las rutas de navegación, la localización y otras configuraciones a nivel de toda la aplicación.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "home",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget que se muestra como la pantalla principal de la aplicación cuando esta se inicia. Es la 'puerta principal' visual de tu app. Si esta propiedad está definida, tendrá prioridad sobre `initialRoute` para la pantalla inicial.",
+        "ejemplo_propiedad": "MaterialApp(\n  home: const MyHomePage(), // Define MyHomePage como la pantalla de inicio\n)"
+      },
+      {
+        "nombre": "title",
+        "tipo": "String",
+        "descripcion_extendida": "Un título descriptivo para la aplicación. Este título es utilizado por el sistema operativo (ej. en el selector de tareas recientes en Android o el app switcher en iOS) para identificar tu aplicación.",
+        "ejemplo_propiedad": "MaterialApp(\n  title: 'Mi Gran Aplicación',\n  home: const MyHomePage(),\n)"
+      },
+      {
+        "nombre": "theme",
+        "tipo": "ThemeData",
+        "descripcion_extendida": "Define el tema visual global de la aplicación (colores principales, tipografías por defecto, formas de los componentes, etc.). Esto ayuda a mantener una apariencia consistente en toda tu UI.",
+        "ejemplo_propiedad": "MaterialApp(\n  theme: ThemeData(\n    primarySwatch: Colors.teal,\n    appBarTheme: const AppBarTheme(color: Colors.cyan),\n  ),\n  home: const MyHomePage(),\n)"
+      },
+      {
+        "nombre": "routes",
+        "tipo": "Map<String, WidgetBuilder>",
+        "descripcion_extendida": "Un mapa de rutas nombradas que la aplicación puede navegar. Cada entrada en el mapa asocia un nombre de ruta (String, ej. '/settings') con una función constructora de widget. Esto permite una navegación limpia y declarativa entre pantallas.\n\n**Nota Importante:** Si usas `routes`, el widget que se muestra al iniciar la app se define con `initialRoute` (si `home` no está presente).",
+        "ejemplo_propiedad": "MaterialApp(\n  initialRoute: '/',\n  routes: {\n    '/': (context) => const HomeScreen(),\n    '/settings': (context) => const SettingsScreen(),\n  },\n)"
+      },
+      {
+        "nombre": "initialRoute",
+        "tipo": "String",
+        "descripcion_extendida": "La ruta con nombre que se carga primero cuando la aplicación se inicia. Esta propiedad es relevante cuando toda tu navegación se basa en rutas nombradas a través de la propiedad `routes` y no estás usando la propiedad `home`.",
+        "ejemplo_propiedad": "MaterialApp(\n  initialRoute: '/dashboard', // Inicia en la ruta del dashboard\n  routes: { '/dashboard': (context) => const DashboardScreen() },\n)"
+      },
+      {
+        "nombre": "navigatorKey",
+        "tipo": "GlobalKey<NavigatorState>",
+        "descripcion_extendida": "Una clave global opcional para acceder al `Navigator` de la aplicación desde cualquier parte del árbol de widgets, incluso fuera del contexto de un widget que conoce el `Navigator` (útil para navegación programática o de servicios).",
+        "ejemplo_propiedad": "final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();\n\nMaterialApp(\n  navigatorKey: navigatorKey,\n  home: Builder(\n    builder: (context) => ElevatedButton(\n      onPressed: () => navigatorKey.currentState?.pushNamed('/settings'),\n      child: const Text('Ir a Ajustes (con GlobalKey)'),\n    ),\n  ),\n  routes: {'/settings': (context) => const SettingsScreen()},\n)"
+      },
+      {
+        "nombre": "debugShowCheckedModeBanner",
+        "tipo": "bool",
+        "descripcion_extendida": "Controla si se muestra la bandera de 'DEBUG' en la esquina superior derecha de la aplicación. Configúrala a `false` para quitarla en producción o al hacer capturas de pantalla limpias.",
+        "ejemplo_propiedad": "MaterialApp(\n  debugShowCheckedModeBanner: false, // Oculta la bandera de DEBUG\n  home: const MyHomePage(),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Definir el punto de entrada principal de cualquier aplicación Flutter basada en Material Design.",
+      "Configurar el tema visual global (colores, fuentes) para toda la aplicación.",
+      "Gestionar la navegación entre diferentes pantallas de la aplicación a través de rutas nombradas."
+    ],
+    "constructores_comunes": [
+      "MaterialApp()",
+      "MaterialApp.router() (para integración con paquetes de enrutamiento más avanzados)"
+    ],
+    "widgets_relacionados": [
+      "Scaffold (para la estructura de cada pantalla)",
+      "WidgetsApp (el widget padre de MaterialApp para aplicaciones no Material)",
+      "ThemeData (para definir el tema)",
+      "Navigator (gestiona la pila de rutas)"
+    ],
+    "cuando_no_usar": "No uses `MaterialApp` si tu aplicación no va a seguir las directrices de diseño de Material Design (por ejemplo, si estás creando una app con un diseño muy personalizado o una app puramente basada en iOS usando `CupertinoApp`). En ese caso, usarías `WidgetsApp` (la base de `MaterialApp` y `CupertinoApp`) y construirías tu UI desde cero.",
+    "codigo": "MaterialApp(\n  title: 'Mi Aplicación Flutter',\n  home: Scaffold(\n    appBar: AppBar(title: const Text('Inicio')),\n    body: const Center(child: Text('¡Bienvenido!')),\n  ),\n  theme: ThemeData(primarySwatch: Colors.deepPurple),\n  debugShowCheckedModeBanner: false,\n);",
+    "imagen": "assets/MaterialApp.jpg",
+    "ruta": "/Page_MaterialApp"
+  },
+  {
+    "nombre": "Container",
+    "descripcion": "Un widget flexible y versátil que se utiliza para contener, dimensionar, posicionar y estilizar otros widgets. Es como una caja en la que puedes meter otros elementos, controlando su tamaño, color, bordes, relleno (padding), margen (margin) y sombras. Es fundamental para agrupar elementos y darles un aspecto visual específico.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El único widget que contendrá el `Container`. Este widget se colocará dentro del área del `Container` y respetará su padding y alineación. Si no se especifica, el `Container` actuará como un espacio vacío estilizado.",
+        "ejemplo_propiedad": "Container(\n  color: Colors.lightGreen.shade100,\n  child: Text('Hola desde el Container'),\n)"
+      },
+      {
+        "nombre": "width",
+        "tipo": "double",
+        "descripcion_extendida": "Define el ancho fijo del contenedor. Si no se especifica, el `Container` intentará ser tan ancho como su padre si no tiene un `child`, o tan ancho como su `child` si lo tiene y no hay otras restricciones.",
+        "ejemplo_propiedad": "Container(\n  width: 150.0,\n  height: 100.0,\n  color: Colors.orange.shade200,\n  child: Center(child: Text('150x100')), \n)"
+      },
+      {
+        "nombre": "height",
+        "tipo": "double",
+        "descripcion_extendida": "Define el alto fijo del contenedor. Similar al `width`, si no se especifica, se ajustará al padre o al `child` según el contexto.",
+        "ejemplo_propiedad": "Container(\n  width: 100.0,\n  height: 200.0,\n  color: Colors.purple.shade100,\n  child: Center(child: Text('100x200')), \n)"
+      },
+      {
+        "nombre": "color",
+        "tipo": "Color",
+        "descripcion_extendida": "Establece el color de fondo del contenedor. **Importante:** Si usas la propiedad `decoration` para estilos más complejos, no puedes usar `color` directamente aquí; el color debe ir dentro de la `decoration` (ej. en `BoxDecoration`).",
+        "ejemplo_propiedad": "Container(\n  color: Colors.red,\n  child: Text('Fondo Rojo'),\n)"
+      },
+      {
+        "nombre": "padding",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "El espacio interno entre el borde del `Container` y su `child`. Este espacio 'empuja' el contenido hacia adentro desde los bordes del contenedor. Se define usando `EdgeInsets` (ej. `EdgeInsets.all`, `EdgeInsets.only`).",
+        "ejemplo_propiedad": "Container(\n  color: Colors.cyan.shade100,\n  padding: EdgeInsets.all(20.0), // 20px de relleno en todos los lados\n  child: Text('Texto con padding'),\n)"
+      },
+      {
+        "nombre": "margin",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "El espacio externo entre el `Container` y otros widgets que lo rodean. Este espacio 'separa' el contenedor de sus vecinos. También se define usando `EdgeInsets`.",
+        "ejemplo_propiedad": "Container(\n  color: Colors.yellow.shade100,\n  margin: EdgeInsets.only(top: 10.0, bottom: 10.0), // Margen solo arriba y abajo\n  child: Text('Texto con margin'),\n)"
+      },
+      {
+        "nombre": "decoration",
+        "tipo": "Decoration",
+        "descripcion_extendida": "Permite personalizar el aspecto visual del contenedor de formas más avanzadas que solo el `color`. Puedes definir bordes, esquinas redondeadas, gradientes, imágenes de fondo y sombras de caja. Si usas `decoration`, el `color` del `Container` debe ir dentro de la `BoxDecoration`.",
+        "ejemplo_propiedad": "Container(\n  decoration: BoxDecoration(\n    color: Colors.blueAccent,\n    borderRadius: BorderRadius.circular(10.0), // Esquinas redondeadas\n    border: Border.all(color: Colors.black, width: 2), // Borde\n    boxShadow: [\n      BoxShadow(\n        color: Colors.black.withOpacity(0.3),\n        spreadRadius: 3,\n        blurRadius: 5,\n        offset: Offset(0, 3),\n      ),\n    ],\n  ),\n  child: Text('Caja decorada'),\n)"
+      },
+      {
+        "nombre": "alignment",
+        "tipo": "AlignmentGeometry",
+        "descripcion_extendida": "Cómo se alinea el `child` dentro del `Container` si el `Container` es más grande que su `child`. Por defecto, el `child` se alinea al centro (`Alignment.center`). Puedes especificar otras alineaciones como `Alignment.topLeft`, `Alignment.bottomRight`, etc.",
+        "ejemplo_propiedad": "Container(\n  width: 200,\n  height: 200,\n  color: Colors.grey.shade300,\n  alignment: Alignment.bottomRight, // Alinea el hijo a la esquina inferior derecha\n  child: Text('Aquí abajo'),\n)"
+      },
+      {
+        "nombre": "constraints",
+        "tipo": "BoxConstraints",
+        "descripcion_extendida": "Define restricciones de tamaño adicionales para el `Container`, como un ancho o alto mínimo/máximo. Esto te da un control más fino sobre cómo el `Container` se ajusta a los límites de su padre o de su contenido. Por ejemplo, `BoxConstraints.expand()` hará que el Container ocupe todo el espacio disponible.",
+        "ejemplo_propiedad": "Container(\n  constraints: BoxConstraints.expand(width: 100, height: 100), // Fuerza un tamaño exacto\n  color: Colors.pink.shade100,\n  child: Text('Tamaño fijo'),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear tarjetas, paneles o secciones con estilos personalizados (colores de fondo, bordes, sombras).",
+      "Establecer dimensiones específicas (ancho, alto) para un widget o un espacio.",
+      "Añadir espaciado interno (padding) o externo (margin) alrededor de los elementos.",
+      "Agrupar múltiples widgets para aplicarles un estilo o un posicionamiento conjunto."
+    ],
+    "constructores_comunes": [
+      "Container()"
+    ],
+    "widgets_relacionados": [
+      "SizedBox (para espacios vacíos con tamaño fijo)",
+      "Padding (solo para aplicar relleno)",
+      "DecoratedBox (si solo necesitas la decoración)",
+      "Align (si solo necesitas alinear un hijo)",
+      "Center (si solo necesitas centrar un hijo)"
+    ],
+    "cuando_no_usar": "Aunque `Container` es muy versátil, no lo uses si solo necesitas una funcionalidad específica que otro widget hace de forma más eficiente y ligera. Por ejemplo:\n- Si solo necesitas espacio vacío, usa `SizedBox`.\n- Si solo necesitas aplicar padding, usa `Padding`.\n- Si solo necesitas centrar un widget, usa `Center`.\n- Si solo necesitas un color de fondo, `ColoredBox` es más simple.\nUsar `Container` por defecto para todo puede añadir un ligero overhead si sus capacidades avanzadas no son necesarias.",
+    "codigo": "Container(\n  padding: const EdgeInsets.all(16),\n  margin: const EdgeInsets.symmetric(vertical: 10),\n  decoration: BoxDecoration(\n    color: Colors.blue[100],\n    borderRadius: BorderRadius.circular(12),\n    border: Border.all(color: Colors.blue, width: 2),\n  ),\n  width: double.infinity,\n  child: const Text(\n    'Este es un ejemplo de Container',\n    style: TextStyle(fontSize: 18),\n    textAlign: TextAlign.center,\n  ),\n);",
+    "imagen": "assets/Container.jpg",
+    "ruta": "/Page_Container"
+  },
+  {
+    "nombre": "Column",
+    "descripcion": "Un widget de diseño que organiza sus `children` (hijos) en una secuencia **vertical**. Es fundamental para construir interfaces donde los elementos se apilan uno encima del otro, adaptándose al espacio disponible y a la alineación que definas.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "children",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "La lista de widgets que se mostrarán verticalmente, uno debajo del otro, dentro de la columna. Siempre se espera una lista de widgets, incluso si es solo uno.",
+        "ejemplo_propiedad": "Column(\n  children: [\n    Text('Primer ítem'),\n    Text('Segundo ítem'),\n  ],\n)"
+      },
+      {
+        "nombre": "mainAxisAlignment",
+        "tipo": "MainAxisAlignment",
+        "descripcion_extendida": "Define cómo se alinean los hijos a lo largo del **eje principal (vertical)** de la columna. Este eje va de arriba a abajo. Las opciones comunes son:\n    - **`MainAxisAlignment.start`**: Alinea los hijos al principio del eje (arriba).\n    - **`MainAxisAlignment.center`**: Centra los hijos en el eje.\n    - **`MainAxisAlignment.end`**: Alinea los hijos al final del eje (abajo).\n    - **`MainAxisAlignment.spaceBetween`**: Distribuye el espacio sobrante uniformemente entre los hijos, con el primer hijo al principio y el último al final.\n    - **`MainAxisAlignment.spaceAround`**: Distribuye el espacio sobrante uniformemente alrededor de cada hijo (incluyendo espacio antes del primero y después del último).\n    - **`MainAxisAlignment.spaceEvenly`**: Distribuye el espacio sobrante uniformemente tanto entre los hijos como antes del primero y después del último, resultando en espacios del mismo tamaño.",
+        "ejemplo_propiedad": "Column(\n  mainAxisAlignment: MainAxisAlignment.center, // Centra los hijos verticalmente\n  children: const [\n    Icon(Icons.star),\n    Text('Estrellas'),\n  ],\n)"
+      },
+      {
+        "nombre": "crossAxisAlignment",
+        "tipo": "CrossAxisAlignment",
+        "descripcion_extendida": "Define cómo se alinean los hijos a lo largo del **eje transversal (horizontal)** de la columna. Este eje va de izquierda a derecha. Las opciones comunes son:\n    - **`CrossAxisAlignment.start`**: Alinea los hijos al principio del eje transversal (izquierda).\n    - **`CrossAxisAlignment.center`**: Centra los hijos en el eje transversal.\n    - **`CrossAxisAlignment.end`**: Alinea los hijos al final del eje transversal (derecha).\n    - **`CrossAxisAlignment.stretch`**: Estira los hijos para que llenen todo el espacio disponible a lo largo del eje transversal. Muy útil para que los hijos ocupen todo el ancho de la `Column`.\n    - **`CrossAxisAlignment.baseline`**: Alinea los hijos en base a su línea base de texto (útil cuando se mezclan textos de diferentes tamaños, requiere `textBaseline`).",
+        "ejemplo_propiedad": "Column(\n  crossAxisAlignment: CrossAxisAlignment.stretch, // Estira los hijos horizontalmente\n  children: [\n    Container(height: 50, color: Colors.red),\n    Container(height: 50, color: Colors.blue),\n  ],\n)"
+      },
+      {
+        "nombre": "mainAxisSize",
+        "tipo": "MainAxisSize",
+        "descripcion_extendida": "Determina cuánto espacio debe ocupar la columna a lo largo de su **eje principal (vertical)**. Las opciones son:\n    - **`MainAxisSize.max`**: La `Column` intentará ocupar todo el espacio vertical disponible (por defecto).\n    - **`MainAxisSize.min`**: La `Column` ocupará solo el espacio vertical mínimo necesario para contener a sus `children`. Útil si no quieres que ocupe todo el alto disponible.",
+        "ejemplo_propiedad": "Column(\n  mainAxisSize: MainAxisSize.min, // La columna solo ocupará el alto necesario\n  children: const [\n    Text('Texto Corto'),\n    Text('Otro Texto Más Corto'),\n  ],\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear listas de elementos apilados (menus, formularios).",
+      "Organizar componentes de una tarjeta verticalmente (imagen arriba, texto abajo).",
+      "Estructurar la disposición principal de una sección de la UI."
+    ],
+    "constructores_comunes": [
+      "Column()"
+    ],
+    "widgets_relacionados": [
+      "Row (para disposición horizontal)",
+      "Expanded (para dar espacio flexible a un hijo en la Column/Row)",
+      "Flexible (similar a Expanded, pero con menos rigidez)",
+      "ListView (para listas desplazables de muchos elementos)"
+    ],
+    "cuando_no_usar": "No uses `Column` para listas muy largas o infinitas, ya que carga y renderiza *todos* sus hijos a la vez, lo que puede afectar seriamente el rendimiento. Para eso, es mucho más eficiente usar widgets como `ListView.builder` o `CustomScrollView` que renderizan elementos a medida que son necesarios (visibles en pantalla). Tampoco la uses si necesitas que los elementos se superpongan (usa `Stack`) o si solo tienes un hijo y no necesitas el manejo de alineación que una `Column` ofrece (un `Container` o el widget directamente sería más simple).",
+    "codigo": "Column(\n  mainAxisAlignment: MainAxisAlignment.center,\n  crossAxisAlignment: CrossAxisAlignment.center,\n  children: const [\n    Icon(Icons.star, size: 50, color: Colors.amber),\n    SizedBox(height: 10),\n    Text('Productos Favoritos',\n      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),\n    ),\n    SizedBox(height: 5),\n    Text('Organizados verticalmente.', style: TextStyle(color: Colors.grey)),\n  ],\n);",
+    "imagen": "assets/Column.jpg",
+    "ruta": "/Page_Column"
+  },
+  {
+    "nombre": "Row",
+    "descripcion": "Un widget de diseño que organiza sus `children` (hijos) en una secuencia **horizontal**. Es esencial para construir interfaces donde los elementos se colocan uno al lado del otro, adaptándose al espacio disponible y a la alineación que definas.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "children",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "La lista de widgets que se mostrarán horizontalmente, uno junto al otro, dentro de la fila. Siempre se espera una lista de widgets, incluso si es solo uno.",
+        "ejemplo_propiedad": "Row(\n  children: [\n    Text('Izquierda'),\n    Text('Derecha'),\n  ],\n)"
+      },
+      {
+        "nombre": "mainAxisAlignment",
+        "tipo": "MainAxisAlignment",
+        "descripcion_extendida": "Define cómo se alinean los hijos a lo largo del **eje principal (horizontal)** de la fila. Este eje va de izquierda a derecha. Las opciones comunes son:\n    - **`MainAxisAlignment.start`**: Alinea los hijos al principio del eje (izquierda).\n    - **`MainAxisAlignment.center`**: Centra los hijos en el eje.\n    - **`MainAxisAlignment.end`**: Alinea los hijos al final del eje (derecha).\n    - **`MainAxisAlignment.spaceBetween`**: Distribuye el espacio sobrante uniformemente entre los hijos, con el primer hijo al principio y el último al final.\n    - **`MainAxisAlignment.spaceAround`**: Distribuye el espacio sobrante uniformemente alrededor de cada hijo (incluyendo espacio antes del primero y después del último).\n    - **`MainAxisAlignment.spaceEvenly`**: Distribuye el espacio sobrante uniformemente tanto entre los hijos como antes del primero y después del último, resultando en espacios del mismo tamaño.",
+        "ejemplo_propiedad": "Row(\n  mainAxisAlignment: MainAxisAlignment.spaceAround, // Distribuye los hijos con espacio alrededor\n  children: const [\n    Icon(Icons.thumb_up),\n    Text('Me gusta'),\n    Icon(Icons.comment),\n  ],\n)"
+      },
+      {
+        "nombre": "crossAxisAlignment",
+        "tipo": "CrossAxisAlignment",
+        "descripcion_extendida": "Define cómo se alinean los hijos a lo largo del **eje transversal (vertical)** de la fila. Este eje va de arriba a abajo. Las opciones comunes son:\n    - **`CrossAxisAlignment.start`**: Alinea los hijos al principio del eje transversal (arriba).\n    - **`CrossAxisAlignment.center`**: Centra los hijos en el eje transversal (por defecto si no se especifica y no hay `Expanded`/`Flexible`).\n    - **`CrossAxisAlignment.end`**: Alinea los hijos al final del eje transversal (abajo).\n    - **`CrossAxisAlignment.stretch`**: Estira los hijos para que llenen todo el espacio disponible a lo largo del eje transversal (ocupando todo el alto de la `Row`).\n    - **`CrossAxisAlignment.baseline`**: Alinea los hijos en base a su línea base de texto (útil cuando se mezclan textos de diferentes tamaños, requiere `textBaseline`).",
+        "ejemplo_propiedad": "Row(\n  crossAxisAlignment: CrossAxisAlignment.center, // Centra los hijos verticalmente\n  children: [\n    const Text('Título Grande', style: TextStyle(fontSize: 30)),\n    const SizedBox(width: 10),\n    const Text('Subtítulo Pequeño'),\n  ],\n)"
+      },
+      {
+        "nombre": "mainAxisSize",
+        "tipo": "MainAxisSize",
+        "descripcion_extendida": "Determina cuánto espacio debe ocupar la fila a lo largo de su **eje principal (horizontal)**. Las opciones son:\n    - **`MainAxisSize.max`**: La `Row` intentará ocupar todo el espacio horizontal disponible (por defecto).\n    - **`MainAxisSize.min`**: La `Row` ocupará solo el espacio horizontal mínimo necesario para contener a sus `children`. Útil si no quieres que ocupe todo el ancho disponible.",
+        "ejemplo_propiedad": "Row(\n  mainAxisSize: MainAxisSize.min, // La fila solo ocupará el ancho necesario\n  children: const [\n    Chip(label: Text('Etiqueta 1')),\n    Chip(label: Text('Etiqueta 2')),\n  ],\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear barras de botones o iconos.",
+      "Diseñar la disposición de elementos dentro de una tarjeta o lista (ej. icono, título, subtítulo).",
+      "Organizar componentes de un formulario horizontalmente.",
+      "Alinear elementos de una barra de navegación inferior."
+    ],
+    "constructores_comunes": [
+      "Row()"
+    ],
+    "widgets_relacionados": [
+      "Column (para disposición vertical)",
+      "Expanded (para dar espacio flexible a un hijo en la Row/Column)",
+      "Flexible (similar a Expanded, pero con menos rigidez)",
+      "Wrap (para elementos que se envuelven a la siguiente línea si no hay espacio)",
+      "Spacer (para crear espacio flexible entre elementos)"
+    ],
+    "cuando_no_usar": "No uses `Row` si esperas que el contenido pueda exceder el ancho de la pantalla y necesites que se envuelva automáticamente a la siguiente línea (para eso, usa `Wrap`). Tampoco es adecuada para listas desplazables muy largas de elementos horizontales si no se envuelve en un `SingleChildScrollView` o `ListView.builder` con `scrollDirection: Axis.horizontal`.",
+    "codigo": "Row(\n  mainAxisAlignment: MainAxisAlignment.spaceEvenly,\n  children: const [\n    Icon(Icons.home, size: 40),\n    Text('Inicio'),\n    Icon(Icons.search, size: 40),\n    Text('Buscar'),\n    Icon(Icons.settings, size: 40),\n    Text('Ajustes'),\n  ],\n);",
+    "imagen": "assets/Row.jpg",
+    "ruta": "/Page_Row"
+  },
+  {
+    "nombre": "Text",
+    "descripcion": "Un widget fundamental en Flutter que se utiliza para mostrar una cadena de texto inmutable en la interfaz de usuario. Es la forma más básica y común de presentar información textual al usuario.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "data",
+        "tipo": "String",
+        "descripcion_extendida": "La cadena de texto (el contenido real) que el widget `Text` va a mostrar. Es un parámetro posicional y, por lo tanto, el más importante del widget.",
+        "ejemplo_propiedad": "Text('¡Hola, Flutter!')"
+      },
+      {
+        "nombre": "style",
+        "tipo": "TextStyle",
+        "descripcion_extendida": "Define el estilo visual completo del texto. Acepta un objeto `TextStyle` que es una clase de configuración clave. Con `TextStyle` puedes personalizar ampliamente la apariencia del texto, incluyendo:\n    - **`color`**: El color del texto (ej. `Colors.blue`).\n    - **`fontSize`**: El tamaño de la fuente en píxeles lógicos (ej. `24.0`).\n    - **`fontWeight`**: El grosor de la fuente (ej. `FontWeight.bold` para negrita, `FontWeight.w700`).\n    - **`fontStyle`**: El estilo de la fuente (ej. `FontStyle.italic` para cursiva, `FontStyle.normal`).\n    - **`fontFamily`**: La familia de la fuente (el tipo de letra, ej. 'Roboto', 'OpenSans', o fuentes personalizadas).\n    - **`decoration`**: Decoraciones como `TextDecoration.underline` (subrayado), `TextDecoration.lineThrough` (tachado), `TextDecoration.overline`.\n    - **`decorationColor`**: El color de la decoración.\n    - **`decorationStyle`**: El estilo de la línea de decoración (ej. `TextDecorationStyle.wavy`).\n    - **`letterSpacing`**: El espacio horizontal adicional entre los caracteres del texto.\n    - **`wordSpacing`**: El espacio horizontal adicional entre las palabras del texto.\n    - **`height`**: La altura de la línea de texto, como un multiplicador del `fontSize` (ej. `1.5` para 150% de la altura normal).\n    - **`shadows`**: Una lista de sombras para aplicar al texto (`List<Shadow>`), cada una con su `offset`, `blurRadius` y `color`.\n    - **`background`**: Un `Paint` para dibujar un color o patrón de fondo *detrás* del texto (no el fondo del widget `Text` en sí).\n\n    Es inmutable; para modificar un estilo, creas una nueva instancia (`.copyWith()`). Hereda valores del `Theme` de la aplicación.",
+        "ejemplo_propiedad": "Text(\n  'Texto Estilizado',\n  style: TextStyle(\n    color: Colors.deepPurple,\n    fontSize: 22.0,\n    fontWeight: FontWeight.bold,\n    fontStyle: FontStyle.italic,\n    decoration: TextDecoration.underline,\n    decorationColor: Colors.red,\n    decorationStyle: TextDecorationStyle.wavy,\n  ),\n)"
+      },
+      {
+        "nombre": "textAlign",
+        "tipo": "TextAlign",
+        "descripcion_extendida": "Define cómo se alinea el texto horizontalmente dentro del espacio disponible que ocupa el widget `Text`. Las opciones incluyen `TextAlign.left`, `TextAlign.center`, `TextAlign.right`, `TextAlign.justify` (para texto justificado en bloques).",
+        "ejemplo_propiedad": "Text(\n  'Este texto está centrado.',\n  textAlign: TextAlign.center,\n)"
+      },
+      {
+        "nombre": "maxLines",
+        "tipo": "int",
+        "descripcion_extendida": "El número máximo de líneas que el texto puede ocupar. Si el texto excede este límite, se aplicará el comportamiento definido por la propiedad `overflow`.",
+        "ejemplo_propiedad": "Text(\n  'Un texto muy largo que se limitará a una sola línea.',\n  maxLines: 1,\n  overflow: TextOverflow.ellipsis,\n)"
+      },
+      {
+        "nombre": "overflow",
+        "tipo": "TextOverflow",
+        "descripcion_extendida": "Determina cómo se maneja el texto si excede el espacio disponible o el `maxLines` especificado. Las opciones comunes son:\n    - **`TextOverflow.ellipsis`**: Añade puntos suspensivos (...) al final del texto.\n    - **`TextOverflow.fade`**: Difumina el final del texto.\n    - **`TextOverflow.clip`**: Simplemente recorta el texto sin añadir ningún indicador.\n    - **`TextOverflow.visible`**: El texto se desborda y puede renderizarse fuera de su caja (a menudo no deseado).",
+        "ejemplo_propiedad": "Text(\n  'Mucho texto para una pequeña área. Mucho texto para una pequeña área.',\n  maxLines: 1,\n  overflow: TextOverflow.fade,\n)"
+      },
+      {
+        "nombre": "textDirection",
+        "tipo": "TextDirection",
+        "descripcion_extendida": "La dirección en la que se renderiza el texto (de izquierda a derecha o de derecha a izquierda). Es crucial para el soporte de idiomas RTL (Right-To-Left) como el árabe o el hebreo.\n    - **`TextDirection.ltr`**: Izquierda a derecha (por defecto en la mayoría de los casos).\n    - **`TextDirection.rtl`**: Derecha a izquierda.",
+        "ejemplo_propiedad": "Text(\n  'Texto de prueba en RTL',\n  textDirection: TextDirection.rtl,\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Mostrar cualquier tipo de información textual en la UI, como títulos, párrafos, etiquetas, descripciones.",
+      "Etiquetas para botones, campos de entrada o iconos.",
+      "Mensajes informativos o de estado para el usuario."
+    ],
+    "constructores_comunes": [
+      "Text()",
+      "Text.rich() (para mostrar texto con múltiples estilos dentro de la misma cadena)"
+    ],
+    "widgets_relacionados": [
+      "RichText (cuando necesitas mezclar muchos estilos diferentes en un solo bloque de texto o aplicar gestos a partes específicas del texto).",
+      "DefaultTextStyle (para establecer un estilo de texto predeterminado que los widgets `Text` hijos pueden heredar).",
+      "TextField (para entrada de texto editable por el usuario).",
+      "SelectableText (para texto que el usuario puede seleccionar y copiar)."
+    ],
+    "cuando_no_usar": "No uses `Text` si necesitas que el usuario pueda introducir o modificar el texto (para eso, `TextField` es la opción). Tampoco lo uses para texto que requiera interactividad avanzada en partes específicas (ej. un link clicable dentro de un párrafo), donde `Text.rich` o `RichText` serían más adecuados.",
+    "codigo": "Text(\n  'Hola Mundo Flutter! Esto es un ejemplo de texto.',\n  style: TextStyle(\n    color: Colors.blueAccent,\n    fontSize: 20.0,\n    fontWeight: FontWeight.bold,\n    fontStyle: FontStyle.italic,\n    letterSpacing: 0.5,\n    decoration: TextDecoration.underline,\n    decorationColor: Colors.red,\n  ),\n  textAlign: TextAlign.center,\n  maxLines: 2,\n  overflow: TextOverflow.ellipsis,\n);",
+    "imagen": "assets/Text.jpg",
+    "ruta": "/Page_Text"
+  },
+  {
+    "nombre": "SingleChildScrollView",
+    "descripcion": "Un widget que hace que su único `child` (hijo) sea desplazable. Es ideal cuando tienes contenido que podría exceder el tamaño de la pantalla, como un formulario largo, una página de detalles o un texto extenso, y necesitas que el usuario pueda desplazarse para ver todo el contenido. A diferencia de `ListView`, solo maneja un único hijo.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El único widget que será desplazable. Puede ser cualquier widget, pero a menudo es un `Column` o un `Row` que contiene a su vez múltiples widgets, los cuales colectivamente exceden el espacio de la pantalla.",
+        "ejemplo_propiedad": "SingleChildScrollView(\n  child: Column(\n    children: [\n      // ... widgets que pueden exceder la pantalla\n    ],\n  ),\n)"
+      },
+      {
+        "nombre": "scrollDirection",
+        "tipo": "Axis",
+        "descripcion_extendida": "Define la dirección en la que el contenido se puede desplazar. Por defecto es `Axis.vertical` (desplazamiento de arriba a abajo). Puedes cambiarlo a `Axis.horizontal` para un desplazamiento de izquierda a derecha.",
+        "ejemplo_propiedad": "SingleChildScrollView(\n  scrollDirection: Axis.horizontal, // Habilita el desplazamiento horizontal\n  child: Row(\n    children: [\n      Container(width: 200, height: 100, color: Colors.red),\n      Container(width: 200, height: 100, color: Colors.blue),\n    ],\n  ),\n)"
+      },
+      {
+        "nombre": "padding",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "El espacio vacío que se añade alrededor del `child` dentro del área de desplazamiento. Esto es útil para que el contenido no se pegue a los bordes del área de desplazamiento. Se define usando `EdgeInsets`.",
+        "ejemplo_propiedad": "SingleChildScrollView(\n  padding: const EdgeInsets.all(20.0), // Añade 20px de relleno alrededor del contenido\n  child: Text('Contenido con padding desplazable'),\n)"
+      },
+      {
+        "nombre": "physics",
+        "tipo": "ScrollPhysics",
+        "descripcion_extendida": "Determina cómo se comporta el desplazamiento. Por defecto, adapta la física al sistema operativo (ej. efecto de rebote en iOS, efecto de sobre-desplazamiento en Android). Puedes usar `NeverScrollableScrollPhysics()` para deshabilitar el desplazamiento, o `BouncingScrollPhysics()` para forzar el rebote en todas las plataformas.",
+        "ejemplo_propiedad": "SingleChildScrollView(\n  physics: const BouncingScrollPhysics(), // Fuerza el efecto de rebote al final del desplazamiento\n  child: Text('Contenido con física de rebote'),\n)"
+      },
+      {
+        "nombre": "controller",
+        "tipo": "ScrollController",
+        "descripcion_extendida": "Un controlador opcional que te permite controlar programáticamente la posición de desplazamiento (ej. desplazarse a una posición específica, leer la posición actual) o escuchar eventos de desplazamiento.",
+        "ejemplo_propiedad": "final ScrollController _scrollController = ScrollController();\n\n// En tu widget:\nSingleChildScrollView(\n  controller: _scrollController,\n  child: Column(\n    children: [\n      // ... contenido\n      ElevatedButton(\n        onPressed: () => _scrollController.animateTo(\n          _scrollController.position.maxScrollExtent, // Desplazarse al final\n          duration: const Duration(seconds: 1),\n          curve: Curves.easeOut,\n        ),\n        child: const Text('Ir al Final'),\n      ),\n    ],\n  ),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Hacer que formularios largos sean desplazables.",
+      "Permitir el desplazamiento en pantallas de detalles de productos o perfiles de usuario que pueden tener mucho contenido.",
+      "Cuando el contenido es dinámico y podría exceder el tamaño de la pantalla en diferentes dispositivos o con diferentes datos."
+    ],
+    "constructores_comunes": [
+      "SingleChildScrollView()"
+    ],
+    "widgets_relacionados": [
+      "Column (usado frecuentemente como hijo para organizar verticalmente)",
+      "Row (usado como hijo si `scrollDirection` es horizontal)",
+      "ListView (para listas de elementos optimizadas con desplazamiento, que construyen elementos bajo demanda)",
+      "CustomScrollView (para efectos de desplazamiento más avanzados y combinados)",
+      "Scrollbar (para añadir una barra de desplazamiento visual)"
+    ],
+    "cuando_no_usar": "No uses `SingleChildScrollView` para listas largas o infinitas de elementos (`ListView` es mucho más eficiente, ya que solo renderiza los elementos que son visibles en pantalla). `SingleChildScrollView` renderiza *todo* su `child` a la vez, lo que puede causar problemas de rendimiento si el contenido es excesivamente grande o complejo.",
+    "codigo": "SingleChildScrollView(\n  padding: const EdgeInsets.all(20.0),\n  child: Column(\n    crossAxisAlignment: CrossAxisAlignment.start,\n    children: [ \n      const Text('Título Largo de Contenido Desplazable', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),\n      const SizedBox(height: 15),\n      Image.network('https://picsum.photos/400/300'),\n      const SizedBox(height: 15),\n      const Text(\n        'Este es un párrafo de texto muy largo que demuestra cómo SingleChildScrollView permite que todo el contenido sea visible a través del desplazamiento. Es útil para formularios, artículos o cualquier sección de la UI que pueda exceder los límites de la pantalla en dispositivos pequeños.',\n        style: TextStyle(fontSize: 16),\n        textAlign: TextAlign.justify,\n      ),\n      const SizedBox(height: 50), // Espacio al final para ver el desplazamiento\n      ElevatedButton(onPressed: () {}, child: const Text('Ir arriba')),\n    ],\n  ),\n);",
+    "imagen": "assets/SingleChildScrollView.jpg",
+    "ruta": "/Page_SingleChildScrollView"
+  },
+  {
+    "nombre": "Image",
+    "descripcion": "Un widget que se utiliza para mostrar imágenes en tu aplicación Flutter. Es increíblemente versátil, permitiéndote cargar imágenes desde diferentes fuentes: assets locales (paquete de la app), archivos en el dispositivo, la red (URLs) o incluso memoria.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "image",
+        "tipo": "ImageProvider",
+        "descripcion_extendida": "La fuente de la imagen. No es un `Widget`, sino un `ImageProvider` que sabe cómo cargar los datos de la imagen. Los `ImageProvider` más comunes son:\n    - **`AssetImage`**: Para imágenes empaquetadas con tu app (desde la carpeta `assets`). Requiere que la ruta de la imagen esté declarada en `pubspec.yaml`.\n    - **`NetworkImage`**: Para imágenes cargadas desde una URL de internet.\n    - **`FileImage`**: Para imágenes cargadas desde un archivo en el sistema de archivos del dispositivo.\n    - **`MemoryImage`**: Para imágenes cargadas desde un `Uint8List` (bytes en memoria).",
+        "ejemplo_propiedad": "Image(\n  image: AssetImage('assets/my_local_image.png'),\n)\n\nImage(\n  image: NetworkImage('https://picsum.photos/250/200'),\n)"
+      },
+      {
+        "nombre": "width",
+        "tipo": "double",
+        "descripcion_extendida": "Define el ancho deseado de la imagen en píxeles lógicos. Si no se especifica, la imagen se dimensionará automáticamente según sus restricciones parentales o su tamaño intrínseco.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  width: 100.0,\n)"
+      },
+      {
+        "nombre": "height",
+        "tipo": "double",
+        "descripcion_extendida": "Define el alto deseado de la imagen en píxeles lógicos. Similar al `width`, si no se especifica, el alto se ajustará automáticamente.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  height: 150.0,\n)"
+      },
+      {
+        "nombre": "fit",
+        "tipo": "BoxFit",
+        "descripcion_extendida": "Determina cómo se debe escalar la imagen para encajar en el espacio asignado por `width` y `height` o por sus restricciones parentales. Opciones comunes:\n    - **`BoxFit.cover`**: Escala la imagen uniformemente para que cubra completamente la caja, recortando cualquier parte que no quepa. Ideal para fondos o miniaturas.\n    - **`BoxFit.contain`**: Escala la imagen uniformemente para que quepa completamente dentro de la caja, dejando espacio vacío si es necesario (manteniendo la relación de aspecto).\n    - **`BoxFit.fill`**: Estira la imagen para que llene completamente la caja, ignorando su relación de aspecto (puede distorsionar la imagen).\n    - **`BoxFit.fitWidth`**: Escala la imagen para que su ancho coincida con el ancho de la caja, ajustando el alto proporcionalmente.\n    - **`BoxFit.fitHeight`**: Escala la imagen para que su alto coincida con el alto de la caja, ajustando el ancho proporcionalmente.\n    - **`BoxFit.none`**: No escala la imagen; simplemente la dibuja en su tamaño original en la parte superior izquierda de la caja (puede desbordarse).",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  width: 100.0,\n  height: 100.0,\n  fit: BoxFit.cover, // La imagen llenará el espacio de 100x100, recortando si es necesario\n)"
+      },
+      {
+        "nombre": "alignment",
+        "tipo": "AlignmentGeometry",
+        "descripcion_extendida": "Define cómo se alinea la imagen dentro de su espacio asignado si la imagen es más pequeña que la caja después de aplicar `fit`. Por defecto, es `Alignment.center`.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  width: 200.0,\n  height: 200.0,\n  fit: BoxFit.contain, // La imagen se ajusta al espacio\n  alignment: Alignment.bottomLeft, // La imagen se alinea a la parte inferior izquierda de la caja\n)"
+      },
+      {
+        "nombre": "color",
+        "tipo": "Color",
+        "descripcion_extendida": "Un color opcional que se mezcla con los píxeles de la imagen. Útil para aplicar tintes o filtros de color a una imagen.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  color: Colors.blue.withOpacity(0.5), // Tinte azul semitransparente\n  colorBlendMode: BlendMode.srcATop,\n)"
+      },
+      {
+        "nombre": "errorBuilder",
+        "tipo": "ImageErrorWidgetBuilder",
+        "descripcion_extendida": "Una función opcional que se llama si la imagen no se puede cargar (ej. URL incorrecta, archivo no encontrado). Permite mostrar un widget de reemplazo (ej. un icono de error) en lugar de simplemente fallar silenciosamente.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://url.invalida/imagen.jpg'),\n  errorBuilder: (context, error, stackTrace) {\n    return const Icon(Icons.broken_image, size: 50, color: Colors.red);\n  },\n)"
+      },
+      {
+        "nombre": "loadingBuilder",
+        "tipo": "ImageLoadingBuilder",
+        "descripcion_extendida": "Una función opcional que se llama mientras la imagen se está cargando. Permite mostrar un widget de marcador de posición (ej. un `CircularProgressIndicator`) mientras la imagen se descarga de la red o se carga desde el disco.",
+        "ejemplo_propiedad": "Image(\n  image: NetworkImage('https://picsum.photos/250/200'),\n  loadingBuilder: (context, child, loadingProgress) {\n    if (loadingProgress == null) return child;\n    return Center(\n      child: CircularProgressIndicator(\n        value: loadingProgress.expectedTotalBytes != null\n            ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!\n            : null,\n      ),\n    );\n  },\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Mostrar logotipos y gráficos de la aplicación.",
+      "Presentar imágenes de productos, avatares de usuario o fondos.",
+      "Integrar imágenes de la web o de la galería del usuario."
+    ],
+    "constructores_comunes": [
+      "Image.asset()",
+      "Image.network()",
+      "Image.file()",
+      "Image.memory()",
+      "Image() (usando directamente ImageProvider)"
+    ],
+    "widgets_relacionados": [
+      "FadeInImage (para imágenes que aparecen gradualmente)",
+      "CircleAvatar (para avatares circulares)",
+      "CachedNetworkImage (un paquete popular para el manejo avanzado de imágenes en red, incluyendo caché y placeholders)"
+    ],
+    "cuando_no_usar": "No uses `Image.network` si necesitas un control avanzado de caché para imágenes de red (considera usar un paquete como `cached_network_image`). Tampoco lo uses si necesitas una imagen con bordes especiales que el widget no pueda lograr por sí solo; en esos casos, `ClipRRect` o `Container` con `decoration` e `image` pueden ser más adecuados.",
+    "codigo": "Image.network(\n  'https://picsum.photos/300/200',\n  width: 300,\n  height: 200,\n  fit: BoxFit.cover,\n  loadingBuilder: (context, child, loadingProgress) {\n    if (loadingProgress == null) return child;\n    return const Center(child: CircularProgressIndicator());\n  },\n  errorBuilder: (context, error, stackTrace) {\n    return const Icon(Icons.broken_image, size: 100, color: Colors.grey);\n  },\n);",
+    "imagen": "assets/Image.jpg",
+    "ruta": "/Page_Image"
+  },
+  {
+    "nombre": "Card",
+    "descripcion": "Un widget de Material Design que representa una \"tarjeta\" en la interfaz de usuario. Las tarjetas son superficies que contienen contenido y acciones sobre un tema único. Se caracterizan por tener esquinas ligeramente redondeadas y una elevación (sombra) que las hace parecer flotar sobre el fondo, proporcionando una jerarquía visual clara.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El único widget que contiene la tarjeta. Es el contenido principal que se mostrará dentro de la superficie de la Card. Puedes anidar cualquier widget aquí, como `Column`, `Row`, `ListTile`, etc., para construir el diseño interno de la tarjeta.",
+        "ejemplo_propiedad": "Card(\n  child: Text('Contenido dentro de la tarjeta'),\n)"
+      },
+      {
+        "nombre": "color",
+        "tipo": "Color",
+        "descripcion_extendida": "Define el color de fondo de la tarjeta. Por defecto, toma el color de la superficie del tema de Material Design (`Theme.of(context).cardColor`). Puedes sobrescribirlo con cualquier color de tu elección para darle un estilo visual único a tu tarjeta.",
+        "ejemplo_propiedad": "Card(\n  color: Colors.blue.shade100,\n  child: Text('Tarjeta Azul Claro'),\n)"
+      },
+      {
+        "nombre": "elevation",
+        "tipo": "double",
+        "descripcion_extendida": "Controla la profundidad o \"altura\" de la tarjeta en relación con su padre. Un valor más alto crea una sombra más grande y difusa, haciendo que la tarjeta parezca más elevada y destacada. Un valor de `0.0` no muestra sombra. El valor por defecto es 1.0.",
+        "ejemplo_propiedad": "Card(\n  elevation: 8.0, // Hace que la tarjeta flote más\n  child: Text('Tarjeta con sombra pronunciada'),\n)"
+      },
+      {
+        "nombre": "shape",
+        "tipo": "ShapeBorder",
+        "descripcion_extendida": "Define la forma del borde de la tarjeta. Por defecto, es un `RoundedRectangleBorder` con un radio de borde pequeño. Puedes usarlo para personalizar el redondeo de las esquinas (`BorderRadius.circular()`) o incluso darle una forma completamente diferente a la tarjeta.",
+        "ejemplo_propiedad": "Card(\n  shape: RoundedRectangleBorder(\n    borderRadius: BorderRadius.circular(20.0), // Esquinas muy redondeadas\n    side: BorderSide(color: Colors.red, width: 2), // Borde rojo\n  ),\n  child: Text('Tarjeta con borde personalizado'),\n)"
+      },
+      {
+        "nombre": "margin",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "El espacio vacío alrededor de la tarjeta que la separa de otros widgets cercanos. Utiliza `EdgeInsets` para definir este espacio. El margen por defecto es `EdgeInsets.all(4.0)`. Un margen adecuado mejora la legibilidad y la organización del diseño.",
+        "ejemplo_propiedad": "Card(\n  margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),\n  child: Text('Tarjeta con margen lateral y vertical'),\n)"
+      },
+      {
+        "nombre": "clipBehavior",
+        "tipo": "Clip",
+        "descripcion_extendida": "Define cómo se debe \"recortar\" el contenido de la tarjeta si sobresale de sus límites. Es especialmente útil cuando la tarjeta tiene esquinas redondeadas y el contenido podría desbordarse. `Clip.antiAlias` proporciona un recorte suave para bordes redondeados, evitando artefactos visuales.",
+        "ejemplo_propiedad": "Card(\n  clipBehavior: Clip.antiAlias, // Asegura que el contenido se recorte suavemente con las esquinas\n  child: Image.network(\n    'https://picsum.photos/200/100', // Una imagen más grande que el Card para ver el recorte\n    fit: BoxFit.cover,\n  ),\n)"
+      },
+      {
+        "nombre": "shadowColor",
+        "tipo": "Color",
+        "descripcion_extendida": "Define el color de la sombra que se dibuja debajo de la tarjeta debido a su `elevation`. Por defecto, la sombra es un tono de negro con opacidad. Puedes cambiar este color para que combine mejor con el tema de tu aplicación o para efectos visuales específicos.",
+        "ejemplo_propiedad": "Card(\n  elevation: 6.0,\n  shadowColor: Colors.purple.shade200, // Sombra morada clara\n  child: Text('Tarjeta con sombra morada'),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Mostrar información agrupada y relacionada (ej. detalles de un producto, un post en un feed, una noticia).",
+      "Crear elementos interactivos que puedan ser tocados para expandir información o navegar (a menudo combinados con `InkWell` o `GestureDetector`).",
+      "Organizar el contenido de manera visualmente atractiva y jerárquica en un diseño Material Design."
+    ],
+    "constructores_comunes": [
+      "Card()"
+    ],
+    "widgets_relacionados": [
+      "Container (para contenedores más básicos sin diseño Material)",
+      "Material (Card se construye sobre Material y hereda propiedades de él)",
+      "InkWell (para añadir efectos visuales al tocar la Card)",
+      "ListTile (a menudo usado como child dentro de una Card para elementos de lista, como en el ejemplo avanzado)"
+    ],
+    "cuando_no_usar": "No uses `Card` si solo necesitas un contenedor rectangular simple sin las características de Material Design (como la elevación y las esquinas redondeadas). En esos casos, un `Container` es más ligero y apropiado. También, para listas muy largas o de rendimiento crítico, el uso excesivo de `Card` para cada elemento podría tener un impacto, siendo preferible optimizar con `ListView.builder` y estructuras más simples si el diseño lo permite.",
+    "codigo": "Card(\n  margin: const EdgeInsets.all(16.0),\n  elevation: 8.0,\n  shape: RoundedRectangleBorder(\n    borderRadius: BorderRadius.circular(15.0),\n  ),\n  child: Padding(\n    padding: const EdgeInsets.all(16.0),\n    child: Column(\n      mainAxisSize: MainAxisSize.min,\n      children: [\n        const ListTile(\n          leading: Icon(Icons.album),\n          title: Text('Título de la Tarjeta'),\n          subtitle: Text('Subtítulo de la descripción.'),\n        ),\n        ButtonBar(\n          children: [\n            TextButton(onPressed: () {}, child: const Text('ACCIÓN 1')),\n            TextButton(onPressed: () {}, child: const Text('ACCIÓN 2')),\n          ],\n        ),\n      ],\n    ),\n  ),\n);",
+    "imagen": "assets/Card.jpg",
+    "ruta": "/Page_Card"
+  },
+  {
+    "nombre": "Padding",
+    "descripcion": "Un widget fundamental en Flutter que inserta espacio vacío alrededor de su 'child' (hijo). Permite controlar el espaciado interno de un widget, empujando su contenido lejos de sus bordes.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "padding",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "Define la cantidad de espacio vacío que se debe aplicar alrededor del 'child'. Puedes especificar un valor uniforme, solo para ciertos lados, o para lados horizontales/verticales.",
+        "ejemplo_propiedad": "Padding(\n  padding: const EdgeInsets.all(16.0), // Padding uniforme de 16px\n  child: Text('Con padding de 16'),\n)\n\nPadding(\n  padding: const EdgeInsets.only(left: 8.0, top: 4.0), // Padding solo a la izquierda y arriba\n  child: Text('Con padding específico'),\n)\n\nPadding(\n  padding: const EdgeInsets.symmetric(horizontal: 20.0), // Padding horizontal\n  child: Text('Con padding horizontal'),\n)"
+      },
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget al que se le aplicará el padding. El espacio definido por `padding` se agregará alrededor de este widget.",
+        "ejemplo_propiedad": "Padding(\n  padding: const EdgeInsets.all(8.0),\n  child: Container(\n    color: Colors.blue,\n    width: 100,\n    height: 100,\n  ),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear espacio entre widgets en un `Column`, `Row` o `Stack`.",
+      "Ajustar la separación de un widget respecto a los bordes de la pantalla o de su contenedor padre.",
+      "Mejorar la legibilidad y la estética de la interfaz de usuario."
+    ],
+    "constructores_comunes": [
+      "Padding({Key? key, required EdgeInsetsGeometry padding, Widget? child})"
+    ],
+    "widgets_relacionados": [
+      "SizedBox",
+      "Container",
+      "Margin (aunque `Container` con `margin` es el equivalente común)"
+    ],
+    "cuando_no_usar": "No uses `Padding` si el espaciado es parte inherente del diseño de un widget personalizado (donde podrías dibujar el padding directamente). Para espaciados simples entre elementos en un `Row` o `Column`, a veces `SizedBox` con `width` o `height` puede ser una alternativa más explícita.",
+    "codigo": "Padding(\n  padding: const EdgeInsets.all(12.0),\n  child: Text(\n    'Este texto tiene padding por todos lados.',\n    style: TextStyle(fontSize: 18),\n  ),\n);",
+    "imagen": "assets/Padding.jpg",
+    "ruta": "/Page_Padding"
+  },
+  {
+    "nombre": "ListTile",
+    "descripcion": "Un widget de Material Design que organiza de forma conveniente hasta tres líneas de texto y opcionalmente iconos iniciales y finales. Es ideal para elementos en listas, menús de navegación o cualquier lugar donde se necesite una fila de información estructurada.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "leading",
+        "tipo": "Widget",
+        "descripcion_extendida": "Un widget que se muestra antes del título y subtítulo. Comúnmente se usa para un `Icon`, `CircleAvatar` o `Image`.",
+        "ejemplo_propiedad": "ListTile(\n  leading: Icon(Icons.person),\n  title: Text('Nombre de Usuario'),\n)"
+      },
+      {
+        "nombre": "title",
+        "tipo": "Widget",
+        "descripcion_extendida": "El texto principal de la lista. Generalmente es un `Text` widget que muestra el nombre del elemento o una descripción principal.",
+        "ejemplo_propiedad": "ListTile(\n  title: Text('Configuración de la Cuenta'),\n)"
+      },
+      {
+        "nombre": "subtitle",
+        "tipo": "Widget",
+        "descripcion_extendida": "Texto secundario que se muestra debajo del título. Proporciona información adicional o un contexto más detallado para el elemento de la lista.",
+        "ejemplo_propiedad": "ListTile(\n  title: Text('Notificaciones'),\n  subtitle: Text('Activar/Desactivar alertas'),\n)"
+      },
+      {
+        "nombre": "trailing",
+        "tipo": "Widget",
+        "descripcion_extendida": "Un widget que se muestra al final de la lista, después del título y subtítulo. Se usa a menudo para iconos de flecha (`Icons.chevron_right`), `Switch` widgets o `Checkbox`.",
+        "ejemplo_propiedad": "ListTile(\n  title: Text('Modo Oscuro'),\n  trailing: Switch(value: true, onChanged: (bool val) {}),\n)"
+      },
+      {
+        "nombre": "onTap",
+        "tipo": "GestureTapCallback",
+        "descripcion_extendida": "Una función de callback que se invoca cuando el usuario toca el `ListTile`. Ideal para manejar la navegación o acciones al seleccionar un elemento.",
+        "ejemplo_propiedad": "ListTile(\n  title: Text('Ver Detalles'),\n  onTap: () {\n    print('ListTile presionado');\n    // Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen()));\n  },\n)"
+      },
+      {
+        "nombre": "dense",
+        "tipo": "bool",
+        "descripcion_extendida": "Si es `true`, el `ListTile` será más compacto, reduciendo el espacio vertical ocupado. Útil para listas con muchos elementos.",
+        "ejemplo_propiedad": "ListTile(\n  dense: true,\n  title: Text('Elemento Compacto'),\n)"
+      },
+      {
+        "nombre": "selected",
+        "tipo": "bool",
+        "descripcion_extendida": "Si es `true`, el `ListTile` se dibujará con un color de fondo y de texto que indica que está seleccionado. Útil en listas de selección única o múltiple.",
+        "ejemplo_propiedad": "ListTile(\n  selected: true,\n  title: Text('Elemento Seleccionado'),\n  selectedTileColor: Colors.blue.withOpacity(0.1),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Elementos en `ListView` o `Column` para mostrar información estructurada.",
+      "Opciones en `Drawer` para navegación.",
+      "Configuraciones en pantallas de ajustes.",
+      "Listas de selección simple o múltiple."
+    ],
+    "constructores_comunes": [
+      "ListTile()"
+    ],
+    "widgets_relacionados": [
+      "ListView",
+      "Card",
+      "Divider",
+      "CheckboxListTile",
+      "RadioListTile"
+    ],
+    "cuando_no_usar": "No uses `ListTile` si necesitas un diseño de fila muy personalizado que no se ajuste a la estructura predefinida de tres líneas de texto y dos iconos. Para esos casos, considera usar `Row` y `Column` directamente para tener un control total del layout.",
+    "codigo": "ListTile(\n  leading: Icon(Icons.star),\n  title: Text('Mi Elemento de Lista'),\n  subtitle: Text('Esta es una descripción secundaria.'),\n  trailing: Icon(Icons.arrow_forward_ios),\n  onTap: () {\n    print('ListTile presionado');\n  },\n);",
+    "imagen": "assets/ListTile.jpg",
+    "ruta": "/Page_ListTile"
+  },
+  {
+    "nombre": "GestureDetector",
+    "descripcion": "Un widget no visual que detecta gestos del usuario, como toques, arrastres o escalado, en el 'child' al que envuelve. Permite hacer que cualquier widget sea interactivo, incluso si no tiene propiedades de `onPressed` por defecto.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget sobre el cual se detectarán los gestos. El `GestureDetector` no tiene una representación visual propia; solo se encarga de procesar las interacciones sobre su hijo.",
+        "ejemplo_propiedad": "GestureDetector(\n  child: Container(\n    color: Colors.red,\n    width: 50,\n    height: 50,\n  ),\n  onTap: () { print('Contenedor rojo tocado'); },\n)"
+      },
+      {
+        "nombre": "onTap",
+        "tipo": "GestureTapCallback",
+        "descripcion_extendida": "Callback que se invoca cuando el usuario toca el widget (un 'tap' simple). Es el gesto más común y útil para acciones de clic.",
+        "ejemplo_propiedad": "GestureDetector(\n  onTap: () {\n    print('Imagen tocada!');\n    // Abrir una nueva pantalla o mostrar un diálogo.\n  },\n  child: Image.asset('assets/my_image.png'),\n)"
+      },
+      {
+        "nombre": "onDoubleTap",
+        "tipo": "GestureTapCallback",
+        "descripcion_extendida": "Callback que se invoca cuando el usuario realiza un doble toque rápido en el widget.",
+        "ejemplo_propiedad": "GestureDetector(\n  onDoubleTap: () { print('Doble toque detectado!'); },\n  child: const Icon(Icons.favorite, size: 50),\n)"
+      },
+      {
+        "nombre": "onLongPress",
+        "tipo": "GestureLongPressCallback",
+        "descripcion_extendida": "Callback que se invoca cuando el usuario mantiene presionado el widget por un tiempo prolongado.",
+        "ejemplo_propiedad": "GestureDetector(\n  onLongPress: () { print('Presión prolongada!'); },\n  child: const Text('Mantén presionado'),\n)"
+      },
+      {
+        "nombre": "onPanUpdate",
+        "tipo": "GestureDragUpdateCallback",
+        "descripcion_extendida": "Callback que se invoca repetidamente mientras el usuario arrastra su dedo a través del widget, proporcionando detalles sobre el movimiento.",
+        "ejemplo_propiedad": "double _top = 0.0;\ndouble _left = 0.0;\n\n// ... dentro de un State\nGestureDetector(\n  onPanUpdate: (details) {\n    setState(() {\n      _top += details.delta.dy;\n      _left += details.delta.dx;\n    });\n  },\n  child: CustomPaint( // Un widget que puede reaccionar al movimiento\n    painter: MyPainter(_top, _left),\n  ),\n)"
+      },
+      {
+        "nombre": "onTapUp",
+        "tipo": "GestureTapUpCallback",
+        "descripcion_extendida": "Callback que se invoca cuando el usuario levanta su dedo después de un toque. Proporciona la posición exacta donde se levantó el dedo.",
+        "ejemplo_propiedad": "GestureDetector(\n  onTapUp: (details) { print('Dedo levantado en: ${details.localPosition}'); },\n  child: Container(width: 100, height: 100, color: Colors.green),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Hacer que widgets no interactivos (como `Image`, `Container`, `Text`) respondan a toques.",
+      "Implementar gestos complejos como arrastrar y soltar, escalar o rotar.",
+      "Detectar múltiples tipos de interacción en una sola área."
+    ],
+    "constructores_comunes": [
+      "GestureDetector({Key? key, Widget? child, GestureTapCallback? onTap, ...})"
+    ],
+    "widgets_relacionados": [
+      "InkWell",
+      "ElevatedButton",
+      "TextButton",
+      "RawGestureDetector"
+    ],
+    "cuando_no_usar": "Si un widget ya tiene una propiedad `onPressed` o similar (como `ElevatedButton`, `ListTile`), es preferible usar esa propiedad en lugar de envolverlo en un `GestureDetector` para un simple toque, ya que los widgets interactivos nativos de Material Design a menudo manejan efectos visuales (como ripples) automáticamente.",
+    "codigo": "GestureDetector(\n  onTap: () {\n    print('Widget tocado!');\n  },\n  onLongPress: () {\n    print('Widget mantenido presionado!');\n  },\n  child: Container(\n    padding: const EdgeInsets.all(20),\n    color: Colors.amber,\n    child: const Text(\n      'Toca o mantén presionado',\n      style: TextStyle(fontSize: 16),\n    ),\n  ),\n);",
+    "imagen": "assets/GestureDetector.jpg",
+    "ruta": "/Page_GestureDetector"
+  },
+
+  {
+    "nombre": "Navigator",
+    "descripcion": "Un widget que gestiona un historial de 'rutas' (páginas o pantallas) de una aplicación como una pila. Permite la navegación entre diferentes pantallas de la aplicación, empujando nuevas rutas a la pila o sacando las existentes.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "initialRoute",
+        "tipo": "String",
+        "descripcion_extendida": "La ruta con nombre que se mostrará inicialmente cuando se inicia la aplicación. Debe coincidir con una de las claves en el mapa de `routes`.",
+        "ejemplo_propiedad": "MaterialApp(\n  initialRoute: '/',\n  routes: {\n    '/': (context) => HomeScreen(),\n    '/details': (context) => DetailScreen(),\n  },\n)"
+      },
+      {
+        "nombre": "routes",
+        "tipo": "Map<String, WidgetBuilder>",
+        "descripcion_extendida": "Un mapa que asocia nombres de cadena (rutas) con funciones que construyen los widgets de la pantalla correspondiente. Es la forma más común de definir rutas con nombre para una aplicación.",
+        "ejemplo_propiedad": "MaterialApp(\n  routes: {\n    '/': (context) => HomeScreen(),\n    '/profile': (context) => ProfileScreen(),\n    '/settings': (context) => SettingsScreen(),\n  },\n)"
+      },
+      {
+        "nombre": "pushNamed",
+        "tipo": "Future<T?> Function(BuildContext context, String routeName, {Object? arguments})",
+        "descripcion_extendida": "Empuja una nueva ruta con nombre a la pila del navegador. La nueva ruta se muestra en la parte superior de la pantalla. Permite pasar `arguments` opcionales a la ruta de destino.",
+        "ejemplo_propiedad": "ElevatedButton(\n  onPressed: () {\n    Navigator.pushNamed(\n      context,\n      '/details',\n      arguments: {'id': 42, 'name': 'Producto XYZ'},\n    );\n  },\n  child: const Text('Ir a Detalles'),\n)"
+      },
+      {
+        "nombre": "pop",
+        "tipo": "void Function(BuildContext context, [Object? result])",
+        "descripcion_extendida": "Saca la ruta actual de la pila del navegador, revelando la ruta anterior. Opcionalmente, puedes pasar un `result` de vuelta a la ruta que hizo el `push`.",
+        "ejemplo_propiedad": "// En la pantalla de detalles, para volver a la anterior\nElevatedButton(\n  onPressed: () {\n    Navigator.pop(context, 'Dato devuelto');\n  },\n  child: const Text('Volver'),\n)"
+      },
+      {
+        "nombre": "popAndPushNamed",
+        "tipo": "Future<T?> Function(BuildContext context, String routeName, {Object? arguments, T? result})",
+        "descripcion_extendida": "Saca la ruta actual de la pila y luego empuja una nueva ruta con nombre, reemplazando la ruta anterior en la pila. Útil para reemplazar la pantalla actual sin que la anterior permanezca en el historial.",
+        "ejemplo_propiedad": "ElevatedButton(\n  onPressed: () {\n    Navigator.popAndPushNamed(context, '/home');\n  },\n  child: const Text('Ir a Inicio y cerrar actual'),\n)"
+      },
+      {
+        "nombre": "pushReplacementNamed",
+        "tipo": "Future<T?> Function(BuildContext context, String routeName, {Object? arguments, T? result})",
+        "descripcion_extendida": "Reemplaza la ruta actual con una nueva ruta con nombre. La ruta actual se elimina de la pila y la nueva se coloca en su lugar. Es similar a `popAndPushNamed` en efecto.",
+        "ejemplo_propiedad": "ElevatedButton(\n  onPressed: () {\n    // Usar después de un login para que el usuario no pueda volver a la pantalla de login\n    Navigator.pushReplacementNamed(context, '/dashboard');\n  },\n  child: const Text('Login y entrar'),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Gestionar la navegación entre todas las pantallas de una aplicación Flutter.",
+      "Manejar el historial de navegación (pila de pantallas).",
+      "Pasar datos entre pantallas (con `arguments`).",
+      "Controlar el flujo de la aplicación (ej. después de un login, reemplazar la pantalla de login con la principal)."
+    ],
+    "constructores_comunes": [
+      "No se construye directamente, se accede a través de `Navigator.of(context)` o métodos estáticos como `Navigator.pushNamed()`."
+    ],
+    "widgets_relacionados": [
+      "MaterialApp (donde se configuran las rutas)",
+      "PageRoute (como MaterialPageRoute o CupertinoPageRoute)",
+      "ModalRoute (para acceder a los argumentos)",
+      "WillPopScope (para controlar el botón de retroceso del dispositivo)"
+    ],
+    "cuando_no_usar": "No es apropiado usar `Navigator` para cambios de UI pequeños dentro de una misma pantalla (ej. mostrar/ocultar un widget, cambiar un estado local). Para eso, usa `StatefulWidget` y `setState` o soluciones de gestión de estado como `Provider`, `Riverpod`, `Bloc`, etc.",
+    "codigo": "class MyApp extends StatelessWidget {\n  const MyApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      title: 'App con Navegación',\n      initialRoute: '/',\n      routes: {\n        '/': (context) => const HomeScreen(),\n        '/details': (context) => const DetailScreen(),\n        '/settings': (context) => const SettingsScreen(),\n      },\n      onGenerateRoute: (settings) {\n        // Un ejemplo avanzado para manejar rutas no definidas o con lógica compleja\n        if (settings.name == '/product') {\n          final args = settings.arguments as Map<String, dynamic>;\n          return MaterialPageRoute(builder: (context) => ProductScreen(productId: args['id']));\n        }\n        return null; // Dejar que el sistema maneje otras rutas\n      },\n    );\n  }\n}\n\n// Ejemplo de HomeScreen\nclass HomeScreen extends StatelessWidget {\n  const HomeScreen({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('Inicio')),\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: [\n            ElevatedButton(\n              onPressed: () {\n                Navigator.pushNamed(context, '/details',\n                    arguments: {'data': 'Información desde Home'});\n              },\n              child: const Text('Ir a Detalles'),\n            ),\n            ElevatedButton(\n              onPressed: () {\n                Navigator.pushNamed(context, '/settings');\n              },\n              child: const Text('Ir a Ajustes'),\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}\n\n// Ejemplo de DetailScreen\nclass DetailScreen extends StatelessWidget {\n  const DetailScreen({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    final Map<String, dynamic>? args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;\n    final String receivedData = args?['data'] ?? 'Sin datos';\n\n    return Scaffold(\n      appBar: AppBar(title: const Text('Detalles')),\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: [\n            Text('Datos recibidos: $receivedData'),\n            ElevatedButton(\n              onPressed: () {\n                Navigator.pop(context, 'Resultado desde Detalles');\n              },\n              child: const Text('Volver con resultado'),\n            ),\n          ],\n        ),\n      ),\n    );\n  }\n}\n",
+    "imagen": "assets/Navigator.jpg",
+    "ruta": "/Page_Navigator"
+},
+{
+    "nombre": "GridView.builder",
+    "descripcion": "Un widget eficiente para construir cuadrículas desplazables de elementos, renderizando solo aquellos que son visibles en la pantalla. Es ideal para galerías, tiendas de productos o cualquier colección grande de ítems que necesitan un diseño de rejilla.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "itemBuilder",
+        "tipo": "IndexedWidgetBuilder (función)",
+        "descripcion_extendida": "Una función de callback que se invoca para construir cada widget individual de la cuadrícula. Recibe el `BuildContext` y el `index` del elemento que debe ser construido. Esta es la clave de su eficiencia, ya que solo construye los widgets a medida que se hacen visibles.",
+        "ejemplo_propiedad": "itemBuilder: (BuildContext context, int index) {\n  return Container(\n    color: Colors.blue[100 * (index % 9)],\n    child: Center(child: Text('Item $index')),\n  );\n}"
+      },
+      {
+        "nombre": "itemCount",
+        "tipo": "int?",
+        "descripcion_extendida": "El número total de elementos en la cuadrícula. Si se omite, `GridView.builder` intentará construir elementos infinitamente hasta que no haya más espacio o `itemBuilder` devuelva `null`. **Es altamente recomendable especificarlo** para listas con un número finito de elementos, ya que ayuda a Flutter a optimizar el desplazamiento y la pre-carga.",
+        "ejemplo_propiedad": "itemCount: 50, // La cuadrícula tendrá 50 elementos"
+      },
+      {
+        "nombre": "gridDelegate",
+        "tipo": "SliverGridDelegate",
+        "descripcion_extendida": "Define el layout de la cuadrícula, incluyendo el número de columnas/filas, el espaciado y la relación de aspecto de los elementos. Es una propiedad **obligatoria**. Los delegados más comunes son:\n- **`SliverGridDelegateWithFixedCrossAxisCount`**: Para un número fijo de elementos a lo largo del eje cruzado (ej., un número fijo de columnas).\n- **`SliverGridDelegateWithMaxCrossAxisExtent`**: Para elementos que tienen un tamaño máximo en el eje cruzado, permitiendo que Flutter calcule automáticamente el número de columnas/filas que caben.",
+        "ejemplo_propiedad": "// Para 2 columnas fijas:\ngridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(\n  crossAxisCount: 2, // 2 columnas\n  crossAxisSpacing: 10.0, // Espacio horizontal\n  mainAxisSpacing: 10.0,  // Espacio vertical\n  childAspectRatio: 0.8,  // Ancho / Alto de cada celda\n)\n\n// Para elementos con un ancho máximo de 150px:\ngridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(\n  maxCrossAxisExtent: 150.0,\n  crossAxisSpacing: 10.0,\n  mainAxisSpacing: 10.0,\n  childAspectRatio: 1.0,\n)"
+      },
+      {
+        "nombre": "scrollDirection",
+        "tipo": "Axis",
+        "descripcion_extendida": "El eje a lo largo del cual la cuadrícula se desplaza. Puede ser `Axis.vertical` (por defecto) para desplazamiento vertical, o `Axis.horizontal` para desplazamiento horizontal.",
+        "ejemplo_propiedad": "scrollDirection: Axis.horizontal, // La cuadrícula se desplaza horizontalmente"
+      },
+      {
+        "nombre": "padding",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "Espacio vacío para insertar alrededor de todo el contenido de la cuadrícula.",
+        "ejemplo_propiedad": "padding: const EdgeInsets.all(16.0), // 16px de padding alrededor de la cuadrícula"
+      },
+      {
+        "nombre": "controller",
+        "tipo": "ScrollController?",
+        "descripcion_extendida": "Un controlador opcional para controlar programáticamente la posición de desplazamiento de la cuadrícula (ej., ir al inicio o al final).",
+        "ejemplo_propiedad": "ScrollController _gridController = ScrollController();\n// ...\nGridView.builder(\n  controller: _gridController,\n  // ...\n);"
+      }
+    ],
+    "usos_comunes": [
+      "Crear galerías de imágenes o miniaturas donde el número de fotos puede ser muy grande.",
+      "Diseñar listados de productos en una tienda online con un formato de rejilla.",
+      "Implementar menús o pantallas de categoría con elementos dispuestos en un formato cuadriculado.",
+      "Cuando se requiere un diseño de cuadrícula eficiente para manejar grandes volúmenes de datos."
+    ],
+    "constructores_comunes": [
+      "GridView.builder({Key? key, Axis scrollDirection = Axis.vertical, bool reverse = false, ScrollController? controller, bool? primary, ScrollPhysics? physics, bool shrinkWrap = false, EdgeInsetsGeometry? padding, required SliverGridDelegate gridDelegate, required IndexedWidgetBuilder itemBuilder, int? itemCount, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double? cacheExtent, List<Widget> children = const <Widget>[]})"
+    ],
+    "widgets_relacionados": [
+      "SliverGridDelegateWithFixedCrossAxisCount (para definir la estructura de la cuadrícula con columnas fijas)",
+      "SliverGridDelegateWithMaxCrossAxisExtent (para definir la estructura de la cuadrícula con tamaño máximo de elemento)",
+      "ListView.builder (para listas lineales eficientes)",
+      "CustomScrollView + SliverGrid (cuando necesitas combinar la cuadrícula con otros efectos de desplazamiento)",
+      "Card (comúnmente usado como el widget individual dentro de la cuadrícula)",
+      "ClipRRect (para redondear las esquinas de las imágenes o contenedores dentro de la cuadrícula)"
+    ],
+    "cuando_no_usar": "No uses `GridView.builder` cuando:\n- Tienes un número muy pequeño y fijo de elementos que no van a cambiar. Un `Column` o `Row` con un `Wrap` o un `GridView` simple (sin `.builder`) podría ser más directo si no necesitas la eficiencia de la construcción perezosa.\n- La interfaz requiere efectos de desplazamiento muy avanzados, como AppBars plegables o la combinación de diferentes tipos de desplazamiento. En ese caso, `CustomScrollView` con `SliverGrid` es la elección correcta.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass GridViewBuilderExampleMinimal extends StatelessWidget {\n  const GridViewBuilderExampleMinimal({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('GridView.builder Minimal')),\n      body: GridView.builder(\n        itemCount: 20,\n        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(\n          crossAxisCount: 3,\n          crossAxisSpacing: 8.0,\n          mainAxisSpacing: 8.0,\n        ),\n        itemBuilder: (BuildContext context, int index) {\n          return Container(\n            color: Colors.blue[100 * (index % 9)],\n            child: Center(child: Text('Item ${index + 1}')),\n          );\n        },\n      ),\n    );\n  }\n}",
+    "imagen": "assets/GridView.builder.jpg",
+    "ruta": "/Page_GridView_builder"
+},
+{
+    "nombre": "GridView.count",
+    "descripcion": "Un widget que organiza sus hijos en una cuadrícula con un número fijo de elementos a lo largo del eje transversal (columnas o filas). Es útil para mostrar un número pequeño y predefinido de elementos en un layout de rejilla donde la eficiencia de carga perezosa no es una preocupación crítica.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "crossAxisCount",
+        "tipo": "int",
+        "descripcion_extendida": "**Obligatoria**. El número fijo de elementos que se mostrarán a lo largo del eje transversal. Si `scrollDirection` es vertical, define el número de columnas. Si es horizontal, define el número de filas.",
+        "ejemplo_propiedad": "crossAxisCount: 3, // Cuadrícula de 3 columnas"
+      },
+      {
+        "nombre": "children",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "**Obligatoria**. La lista de widgets que se mostrarán en la cuadrícula. Todos estos widgets se construyen y se renderizan inmediatamente (no de forma perezosa).",
+        "ejemplo_propiedad": "children: [\n  Container(color: Colors.red),\n  Container(color: Colors.green),\n  Container(color: Colors.blue),\n]"
+      },
+      {
+        "nombre": "mainAxisSpacing",
+        "tipo": "double",
+        "descripcion_extendida": "El espacio en píxeles entre los elementos a lo largo del eje principal (la dirección de desplazamiento).",
+        "ejemplo_propiedad": "mainAxisSpacing: 10.0,"
+      },
+      {
+        "nombre": "crossAxisSpacing",
+        "tipo": "double",
+        "descripcion_extendida": "El espacio en píxeles entre los elementos a lo largo del eje cruzado (perpendicular a la dirección de desplazamiento).",
+        "ejemplo_propiedad": "crossAxisSpacing: 10.0,"
+      },
+      {
+        "nombre": "childAspectRatio",
+        "tipo": "double",
+        "descripcion_extendida": "La relación de aspecto (ancho / alto) para cada elemento de la cuadrícula. Por ejemplo, `1.0` crea elementos cuadrados. Ajusta esto para controlar la forma de las celdas.",
+        "ejemplo_propiedad": "childAspectRatio: 1.0, // Elementos cuadrados"
+      },
+      {
+        "nombre": "scrollDirection",
+        "tipo": "Axis",
+        "descripcion_extendida": "El eje a lo largo del cual la cuadrícula se desplaza. Puede ser `Axis.vertical` (por defecto) o `Axis.horizontal`.",
+        "ejemplo_propiedad": "scrollDirection: Axis.horizontal,"
+      },
+      {
+        "nombre": "padding",
+        "tipo": "EdgeInsetsGeometry",
+        "descripcion_extendida": "Espacio vacío para insertar alrededor de toda la cuadrícula.",
+        "ejemplo_propiedad": "padding: const EdgeInsets.all(8.0),"
+      }
+    ],
+    "usos_comunes": [
+      "Crear cuadrículas de iconos o botones para menús o paneles de control con un número fijo de opciones.",
+      "Mostrar una pequeña colección de elementos en un diseño cuadriculado donde la pre-carga de todos los elementos no afecta el rendimiento (ej., menos de 20-30 elementos).",
+      "Diseñar teclados numéricos o selectores de color en formato de rejilla."
+    ],
+    "constructores_comunes": [
+      "GridView.count({Key? key, Axis scrollDirection = Axis.vertical, bool reverse = false, ScrollController? controller, bool? primary, ScrollPhysics? physics, bool shrinkWrap = false, EdgeInsetsGeometry? padding, required int crossAxisCount, double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double? cacheExtent, List<Widget> children = const <Widget>[]})"
+    ],
+    "widgets_relacionados": [
+      "GridView.builder (la alternativa eficiente para listas largas o dinámicas)",
+      "GridView.extent (otra forma de GridView que define el tamaño máximo de los elementos en el eje cruzado)",
+      "Wrap (para elementos que fluyen a la siguiente línea/columna sin el comportamiento estricto de una cuadrícula)",
+      "Card (comúnmente usado como el widget individual dentro de la cuadrícula)"
+    ],
+    "cuando_no_usar": "No uses `GridView.count` cuando:\n- La cantidad de elementos es **grande o puede crecer dinámicamente**. Esto afectará negativamente el rendimiento ya que todos los elementos se construyen a la vez. En su lugar, usa `GridView.builder`.\n- Necesitas comportamientos de desplazamiento complejos que involucren una `SliverAppBar` u otros `Slivers` especiales. Para esos casos, `CustomScrollView` con `SliverGrid` es la opción correcta.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass GridViewCountExampleMinimal extends StatelessWidget {\n  const GridViewCountExampleMinimal({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('GridView.count Minimal')),\n      body: GridView.count(\n        crossAxisCount: 3, // 3 columnas fijas\n        padding: const EdgeInsets.all(8.0),\n        mainAxisSpacing: 8.0,\n        crossAxisSpacing: 8.0,\n        children: List.generate(9, (index) {\n          return Container(\n            color: Colors.teal[100 * (index % 9)],\n            child: Center(child: Text('Item ${index + 1}')),\n          );\n        }),\n      ),\n    );\n  }\n}",
+    "imagen": "assets/GridView.count.jpg",
+    "ruta": "/Page_GridView_count"
+},
+
+
+
+
+
+
+
+{
+    "nombre": "Drawer",
+    "descripcion": "Un panel de Material Design que se desliza horizontalmente desde el borde de la pantalla (generalmente el izquierdo) para mostrar opciones de navegación de alto nivel en una aplicación. Es comúnmente conocido como el 'menú de hamburguesa'.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El contenido principal del Drawer. Típicamente, este es un `ListView` que contiene `DrawerHeader` y una serie de `ListTile`s para las opciones de navegación.",
+        "ejemplo_propiedad": "Drawer(\n  child: ListView(\n    padding: EdgeInsets.zero,\n    children: const [\n      DrawerHeader(\n        decoration: BoxDecoration(color: Colors.blue),\n        child: Text('Encabezado'),\n      ),\n      ListTile(title: Text('Opción 1')),\n    ],\n  ),\n)"
+      },
+      {
+        "nombre": "elevation",
+        "tipo": "double",
+        "descripcion_extendida": "La elevación Z del Drawer. Controla la sombra proyectada por el Drawer, dándole un efecto de levantamiento sobre el contenido principal de la pantalla.",
+        "ejemplo_propiedad": "Scaffold(\n  drawer: Drawer(\n    elevation: 16.0, // Mayor sombra\n    child: Text('Mi Drawer'),\n  ),\n)"
+      },
+      {
+        "nombre": "width",
+        "tipo": "double",
+        "descripcion_extendida": "El ancho del Drawer. Por defecto, ocupa una porción estándar de la pantalla, pero puedes especificar un ancho fijo si lo necesitas.",
+        "ejemplo_propiedad": "Scaffold(\n  drawer: Drawer(\n    width: 250.0, // Ancho fijo de 250 píxeles\n    child: Text('Drawer más estrecho'),\n  ),\n)"
+      },
+      {
+        "nombre": "semanticLabel",
+        "tipo": "String",
+        "descripcion_extendida": "Una etiqueta semántica que describe el Drawer para tecnologías de asistencia (lectores de pantalla). Es importante para la accesibilidad.",
+        "ejemplo_propiedad": "Drawer(\n  semanticLabel: 'Menú de navegación principal',\n  child: Text('Opciones'),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Proporcionar acceso a las secciones principales de una aplicación (ej. Inicio, Perfil, Configuración, Cerrar Sesión).",
+      "Mostrar opciones de navegación que no necesitan estar siempre visibles en la parte inferior de la pantalla.",
+      "Ofrecer una experiencia de usuario familiar en plataformas móviles."
+    ],
+    "constructores_comunes": [
+      "Drawer({Key? key, Widget? child, double? elevation, double? width, String? semanticLabel})"
+    ],
+    "widgets_relacionados": [
+      "Scaffold (el contenedor principal para el Drawer)",
+      "AppBar (donde se suele activar el Drawer con un ícono de menú)",
+      "ListView (para organizar el contenido del Drawer)",
+      "ListTile (para los elementos individuales del menú)",
+      "DrawerHeader (para el encabezado del Drawer)",
+      "BottomNavigationBar (una alternativa para navegación principal con menos opciones)"
+    ],
+    "cuando_no_usar": "No uses `Drawer` para:\n- Mostrar una gran cantidad de datos o listas detalladas (ej. una lista de 50 productos). Para esto, es mejor una pantalla dedicada con un `ListView` en el `body` del `Scaffold`.\n- Acciones contextuales o relacionadas con el contenido específico de la pantalla actual.\n- Navegación entre un número muy pequeño de vistas principales (2-5), donde un `BottomNavigationBar` podría ser más directo y accesible para el usuario.",
+    "codigo": "Scaffold(\n  appBar: AppBar(\n    title: const Text('Mi Aplicación'),\n  ),\n  drawer: Drawer(\n    child: ListView(\n      padding: EdgeInsets.zero, // Importante para evitar padding superior\n      children: <Widget>[\n        const DrawerHeader(\n          decoration: BoxDecoration(\n            color: Colors.deepPurple,\n          ),\n          child: Text(\n            'Menú de la App',\n            style: TextStyle(color: Colors.white, fontSize: 24),\n          ),\n        ),\n        ListTile(\n          leading: const Icon(Icons.home),\n          title: const Text('Inicio'),\n          onTap: () {\n            Navigator.pop(context); // Cierra el Drawer\n            // Aquí puedes navegar a la pantalla de inicio\n            // Navigator.pushReplacementNamed(context, '/');\n          },\n        ),\n        ListTile(\n          leading: const Icon(Icons.person),\n          title: const Text('Perfil'),\n          onTap: () {\n            Navigator.pop(context);\n            // Navigator.pushNamed(context, '/profile');\n          },\n        ),\n        const Divider(), // Separador visual\n        ListTile(\n          title: const Text('Cerrar Sesión'),\n          onTap: () {\n            Navigator.pop(context);\n            // Lógica para cerrar sesión\n          },\n        ),\n      ],\n    ),\n  ),\n  body: const Center(\n    child: Text('Contenido principal de la pantalla'),\n  ),\n);",
+    "imagen": "assets/Drawer.jpg",
+    "ruta": "/Page_Drawer"
+},
+{
+    "nombre": "Transform",
+    "descripcion": "Un widget que aplica una transformación (rotación, escalado, traslación) a su widget hijo antes de pintarlo. Permite manipular visualmente la posición, el tamaño y la orientación de un widget sin afectar su espacio real en el layout. Es la base para crear efectos visuales y animaciones 3D.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "transform",
+        "tipo": "Matrix4",
+        "descripcion_extendida": "La matriz 4x4 que define la transformación a aplicar. Es la propiedad más flexible y potente de `Transform`. Flutter ofrece constructores convenientes de `Matrix4` para operaciones comunes (ver ejemplos de `Matrix4` a continuación). Las rotaciones se especifican en **radianes** (grados * (π / 180)).\n\nPara **efectos 3D con perspectiva**, es crucial añadir `..setEntry(3, 2, 0.001)` (o un valor similar) a tu `Matrix4.identity()` antes de las rotaciones X/Y.",
+        "ejemplo_propiedad": "import 'dart:math' as math;\n\n// Transformación 3D compleja con perspectiva\nTransform(\n  alignment: Alignment.center,\n  transform: Matrix4.identity()\n    ..setEntry(3, 2, 0.001) // Añade perspectiva\n    ..rotateX(math.pi / 6) // Rotación en eje X (30 grados)\n    ..rotateY(math.pi / 6), // Rotación en eje Y (30 grados)\n  child: Container(color: Colors.teal, width: 200, height: 150,\n    child: const Center(child: Text('3D!', style: TextStyle(color: Colors.white)))),\n)"
+      },
+      {
+        "nombre": "Transform.rotate (Constructor de conveniencia)",
+        "tipo": "double angle, Offset? origin, AlignmentGeometry? alignment",
+        "descripcion_extendida": "Un constructor de conveniencia que aplica una rotación simple a su hijo. El `angle` se especifica en radianes. Es equivalente a usar `transform: Matrix4.rotationZ(angle)`.",
+        "ejemplo_propiedad": "import 'dart:math' as math;\n\n// Rotación simple en el plano 2D (eje Z)\nTransform.rotate(\n  angle: math.pi / 4, // 45 grados\n  alignment: Alignment.center,\n  child: Container(color: Colors.blue, width: 100, height: 100,\n    child: const Center(child: Text('Girado', style: TextStyle(color: Colors.white)))),\n)"
+      },
+      {
+        "nombre": "Transform.scale (Constructor de conveniencia)",
+        "tipo": "double scale, Offset? origin, AlignmentGeometry? alignment, double? scaleX, double? scaleY",
+        "descripcion_extendida": "Un constructor de conveniencia que aplica un escalado uniforme o no uniforme a su hijo. `scale` aplica el mismo factor en X e Y. `scaleX` y `scaleY` permiten un escalado independiente.",
+        "ejemplo_propiedad": "// Escalado uniforme (150%)\nTransform.scale(\n  scale: 1.5,\n  alignment: Alignment.center,\n  child: Container(color: Colors.purple, width: 100, height: 100,\n    child: const Center(child: Text('Escalado', style: TextStyle(color: Colors.white)))),\n)\n\n// Escalado no uniforme (ancho 50%, alto 200%)\nTransform.scale(\n  scaleX: 0.5, scaleY: 2.0,\n  alignment: Alignment.center,\n  child: Container(color: Colors.orange, width: 100, height: 100,\n    child: const Center(child: Text('Estirado', style: TextStyle(color: Colors.white)))),\n)"
+      },
+      {
+        "nombre": "Transform.translate (Constructor de conveniencia)",
+        "tipo": "Offset offset",
+        "descripcion_extendida": "Un constructor de conveniencia que aplica una traslación (movimiento) a su hijo. `offset` especifica la cantidad de movimiento en los ejes X e Y desde la posición original.",
+        "ejemplo_propiedad": "// Traslación de 50px a la derecha y 20px hacia abajo\nTransform.translate(\n  offset: const Offset(50.0, 20.0),\n  child: Container(color: Colors.green, width: 100, height: 100,\n    child: const Center(child: Text('Movido', style: TextStyle(color: Colors.white)))),\n)"
+      },
+      {
+        "nombre": "alignment",
+        "tipo": "AlignmentGeometry",
+        "descripcion_extendida": "El punto de origen de la transformación, en relación con el tamaño del hijo. Por defecto es `Alignment.topLeft`. Para rotar o escalar desde el centro del widget, usa `Alignment.center`. Aplicable a todos los constructores de `Transform`.",
+        "ejemplo_propiedad": "Transform.rotate(\n  alignment: Alignment.center,\n  angle: math.pi / 2, // Gira 90 grados desde el centro\n  child: Container(width: 100, height: 100, color: Colors.amber),\n)"
+      },
+      {
+        "nombre": "origin",
+        "tipo": "Offset",
+        "descripcion_extendida": "Un desplazamiento absoluto que especifica el punto de origen de la transformación, en relación con la esquina superior izquierda (0,0) del widget. Proporciona un control más fino que `alignment` para definir el pivote de la transformación.",
+        "ejemplo_propiedad": "Transform.rotate(\n  origin: const Offset(50, 50), // Gira alrededor del punto (50,50) del Container\n  angle: math.pi / 2,\n  child: Container(width: 100, height: 100, color: Colors.pinkAccent),\n)"
+      },
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget al que se le aplicará la transformación visual. El `Transform` no tiene una representación visual propia; solo modifica cómo se dibuja su hijo.",
+        "ejemplo_propiedad": "Transform.rotate(\n  angle: 0.5,\n  child: Image.asset('assets/my_image.png'), // Transformando una imagen\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear animaciones de rotación, escalado o movimiento de widgets de forma visualmente impactante.",
+      "Desarrollar efectos visuales complejos, como voltear tarjetas, animaciones de entrada/salida dinámicas o simular objetos 3D.",
+      "Ajustar la apariencia visual de un widget sin alterar su lugar y tamaño real en el layout general de la UI.",
+      "Interactuar con gestos para permitir al usuario manipular visualmente elementos (ej. girar una imagen con el dedo mediante un `GestureDetector`)."
+    ],
+    "constructores_comunes": [
+      "Transform({Key? key, required Matrix4 transform, AlignmentGeometry? alignment, Offset? origin, Widget? child})",
+      "Transform.rotate({Key? key, required double angle, Offset? origin, AlignmentGeometry? alignment, Widget? child})",
+      "Transform.scale({Key? key, required double scale, Offset? origin, AlignmentGeometry? alignment, double? scaleX, double? scaleY, Widget? child})",
+      "Transform.translate({Key? key, required Offset offset, Widget? child})"
+    ],
+    "widgets_relacionados": [
+      "Matrix4 (la clase subyacente para las transformaciones)",
+      "AnimatedBuilder (para integrar `Transform` en animaciones más complejas)",
+      "GestureDetector (para hacer que las transformaciones respondan a la interacción del usuario, como arrastrar o pellizcar)",
+      "SizedBox, Container (usados para controlar el espacio real en el layout, a diferencia de `Transform` que solo afecta la visualización)",
+      "TweenAnimationBuilder (otra opción para animar transformaciones de manera sencilla)"
+    ],
+    "cuando_no_usar": "No uses `Transform` si:\n- Necesitas cambiar el espacio real que ocupa un widget en el layout de la pantalla (ej. para empujar otros widgets, afectar el flujo de una `Column` o `Row`). Para esto, usa propiedades de tamaño (`width`, `height`), `Padding`, `SizedBox` o widgets flexibles como `Flexible`/`Expanded`.\n- Solo necesitas mover un widget una cantidad fija y simple en 2D sin otras transformaciones. En algunos casos, `Positioned` dentro de un `Stack` puede ser una alternativa más sencilla para un control absoluto de la posición en un contexto de superposición.",
+    "codigo": "import 'package:flutter/material.dart';\nimport 'dart:math' as math;\n\n// Ejemplo interactivo con sliders para controlar rotaciones (requiere StatefulWidget)\nclass TransformExampleScreen extends StatefulWidget {\n  const TransformExampleScreen({super.key});\n\n  @override\n  State<TransformExampleScreen> createState() => _TransformExampleScreenState();\n}\n\nclass _TransformExampleScreenState extends State<TransformExampleScreen> {\n  double _rotationX = 0.0;\n  double _rotationY = 0.0;\n  double _rotationZ = 0.0;\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('Transform con Sliders')),\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.center,\n          children: [\n            Transform(\n              alignment: Alignment.center,\n              transform: Matrix4.identity()\n                ..setEntry(3, 2, 0.001) // Perspectiva para 3D\n                ..rotateX(_rotationX)\n                ..rotateY(_rotationY)\n                ..rotateZ(_rotationZ),\n              child: Container(\n                width: 150, height: 150, color: Colors.deepPurple,\n                child: const Center(child: Text('Gírame!', style: TextStyle(color: Colors.white, fontSize: 24))),\n              ),\n            ),\n            const SizedBox(height: 40),\n            _buildSlider('Rotación X', _rotationX, (val) => setState(() => _rotationX = val)),\n            _buildSlider('Rotación Y', _rotationY, (val) => setState(() => _rotationY = val)),\n            _buildSlider('Rotación Z', _rotationZ, (val) => setState(() => _rotationZ = val)),\n          ],\n        ),\n      ),\n    );\n  }\n\n  Widget _buildSlider(String label, double value, ValueChanged<double> onChanged) {\n    return Padding(\n      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),\n      child: Column(\n        children: [\n          Text('$label: ${(value * 180 / math.pi).toStringAsFixed(0)}°'),\n          Slider(\n            value: value,\n            min: -math.pi, max: math.pi, divisions: 360,\n            label: '${(value * 180 / math.pi).toStringAsFixed(0)}°',\n            onChanged: onChanged,\n          ),\n        ],\n      ),\n    );\n  }\n}",
+    "imagen": "assets/Transform.jpg",
+    "ruta": "/Page_Transform"
+},
+{
+    "nombre": "CustomScrollView",
+    "descripcion": "Un widget avanzado que proporciona un desplazamiento personalizado y la capacidad de combinar diferentes tipos de efectos de desplazamiento (como barras de aplicación que se encogen, listas y cuadrículas) en una única área desplazable. Construye su contenido utilizando 'Slivers', que son piezas de contenido desplazable con comportamientos específicos.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "sliverx|s",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "Una lista de 'Slivers' que definen el contenido y el comportamiento de desplazamiento de CustomScrollView. Cada Sliver es una porción del área desplazable que puede tener su propio comportamiento de desplazamiento. Ejemplos comunes incluyen `SliverAppBar`, `SliverList`, `SliverGrid`, y `SliverToBoxAdapter`.",
+        "ejemplo_propiedad": "CustomScrollView(\n  slivers: <Widget>[\n    const SliverAppBar(\n      title: Text('Mi App Bar Flexible'),\n      expandedHeight: 200.0,\n      floating: true, // La barra se esconde/muestra al desplazarse\n    ),\n    SliverList(\n      delegate: SliverChildBuilderDelegate(\n        (BuildContext context, int index) {\n          return ListTile(title: Text('Elemento $index'));\n        },\n        childCount: 50,\n      ),\n    ),\n  ],\n)"
+      },
+      {
+        "nombre": "scrollDirection",
+        "tipo": "Axis",
+        "descripcion_extendida": "El eje a lo largo del cual el contenido se desplaza. Puede ser `Axis.vertical` (por defecto) o `Axis.horizontal`.",
+        "ejemplo_propiedad": "CustomScrollView(\n  scrollDirection: Axis.horizontal,\n  slivers: <Widget>[\n    // ... Slivers diseñados para desplazamiento horizontal\n  ],\n)"
+      },
+      {
+        "nombre": "controller",
+        "tipo": "ScrollController",
+        "descripcion_extendida": "Un controlador que puede ser usado para controlar programáticamente la posición de desplazamiento de CustomScrollView, añadir oyentes a eventos de desplazamiento, etc.",
+        "ejemplo_propiedad": "ScrollController _scrollController = ScrollController();\n\n// ... dentro de un StatefulWidget\nCustomScrollView(\n  controller: _scrollController,\n  slivers: [/* ... */],\n)\n\n// Para ir al inicio programáticamente:\n_scrollController.animateTo(0.0, duration: Duration(seconds: 1), curve: Curves.easeOut);"
+      },
+      {
+        "nombre": "physics",
+        "tipo": "ScrollPhysics",
+        "descripcion_extendida": "Define cómo el CustomScrollView responde a la entrada del usuario y a los límites del desplazamiento. Ejemplos incluyen `BouncingScrollPhysics` (efecto de rebote en iOS) o `ClampingScrollPhysics` (efecto de fijación en Android).",
+        "ejemplo_propiedad": "CustomScrollView(\n  physics: const BouncingScrollPhysics(), // Efecto de rebote al final del scroll\n  slivers: [/* ... */],\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Crear interfaces de usuario con efectos de desplazamiento complejos y dinámicos, como AppBars plegables o secciones flotantes.",
+      "Combinar diferentes tipos de listas (ej. una cuadrícula seguida de una lista lineal) en una única vista desplazable y coherente.",
+      "Optimizar el rendimiento al mostrar grandes cantidades de datos, ya que los Slivers (como `SliverList` y `SliverGrid`) renderizan los elementos de forma perezosa (solo los visibles).",
+      "Implementar efectos de paralaje o diseños donde los elementos se comportan de manera no estándar al desplazarse."
+    ],
+    "constructores_comunes": [
+      "CustomScrollView({Key? key, Axis scrollDirection = Axis.vertical, bool reverse = false, ScrollController? controller, ScrollPhysics? physics, bool shrinkWrap = false, Key? center, double? anchor, double? cacheExtent, List<Widget> slivers = const <Widget>[], int? semanticChildCount, DragStartBehavior dragStartBehavior = DragStartBehavior.start, ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual, String? restorationId, Clip clipBehavior = Clip.hardEdge})"
+    ],
+    "widgets_relacionados": [
+      "SliverAppBar (barra de aplicación flexible para CustomScrollView)",
+      "SliverList (versión de lista eficiente para CustomScrollView)",
+      "SliverGrid (versión de cuadrícula eficiente para CustomScrollView)",
+      "SliverToBoxAdapter (permite insertar widgets no-Sliver en CustomScrollView)",
+      "SingleChildScrollView (alternativa más simple para desplazamiento de un solo hijo)",
+      "ListView.builder, GridView.builder (widgets de lista/cuadrícula eficientes pero sin la flexibilidad de Slivers)"
+    ],
+    "cuando_no_usar": "No uses `CustomScrollView` cuando:\n- Solo necesitas que un único bloque de contenido se desplace y no requieres efectos de desplazamiento complejos o combinación de diferentes tipos de listas. En estos casos, `SingleChildScrollView` es más simple y suficiente.\n- La lista de elementos es pequeña y fija, y el rendimiento no es una preocupación crítica. `SingleChildScrollView` o incluso un `Column` dentro de un `SingleChildScrollView` podría ser más directo.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass CustomScrollViewExample extends StatelessWidget {\n  const CustomScrollViewExample({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      body: CustomScrollView(\n        slivers: <Widget>[\n          const SliverAppBar(\n            pinned: true, // La barra se mantiene visible en la parte superior\n            expandedHeight: 250.0,\n            flexibleSpace: FlexibleSpaceBar(\n              title: Text('Mi Perfil', style: TextStyle(color: Colors.white)),\n              background: Image.network(\n                'https://picsum.photos/800/400?random=1', // Imagen de fondo\n                fit: BoxFit.cover,\n              ),\n            ),\n          ),\n          SliverToBoxAdapter(\n            // Un widget regular que se desplaza con los slivers\n            child: Container(\n              padding: const EdgeInsets.all(16.0),\n              color: Colors.grey[200],\n              child: const Text(\n                'Información de usuario y estadísticas:',\n                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),\n              ),\n            ),\n          ),\n          SliverList(\n            delegate: SliverChildBuilderDelegate(\n              (BuildContext context, int index) {\n                return ListTile(\n                  leading: Icon(Icons.person), // Icono para cada elemento\n                  title: Text('Detalle de Usuario ${index + 1}'),\n                  subtitle: Text('Información adicional del perfil.'),\n                );\n              },\n              childCount: 20, // 20 elementos en la lista\n            ),\n          ),\n          SliverGrid(\n            delegate: SliverChildBuilderDelegate(\n              (BuildContext context, int index) {\n                return Card(\n                  color: Colors.blueGrey[100 * (index % 9) + 100],\n                  child: Center(\n                    child: Text('Item ${index + 1}', style: TextStyle(color: Colors.white)),\n                  ),\n                );\n              },\n              childCount: 12, // 12 elementos en la cuadrícula\n            ),\n            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(\n              crossAxisCount: 3, // 3 columnas\n              mainAxisSpacing: 8.0,\n              crossAxisSpacing: 8.0,\n              childAspectRatio: 1.0, // Cuadrados\n            ),\n          ),\n          SliverPadding(\n            padding: const EdgeInsets.all(16.0),\n            sliver: SliverToBoxAdapter(\n              child: ElevatedButton(\n                onPressed: () { /* Acción */ },\n                child: const Text('Ver más'),\n              ),\n            ),\n          ),\n        ],\n      ),\n    );\n  }\n}",
+    "imagen": "assets/CustomScrollView.jpg",
+    "ruta": "/Page_CustomScrollView"
+},
+{
+    "nombre": "PageView",
+    "descripcion": "Un widget que permite al usuario deslizar horizontal o verticalmente para navegar entre una colección de widgets ('páginas'). Es ideal para mostrar contenido en un formato de carrusel, tutoriales de bienvenida o vistas de pestañas personalizadas.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "children",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "La lista de widgets que se mostrarán como páginas. Cada widget en esta lista se considera una página individual y se cargará en memoria cuando el PageView sea construido.",
+        "ejemplo_propiedad": "PageView(\n  children: const [\n    Center(child: Text('Página 1')),\n    Center(child: Text('Página 2')),\n    Center(child: Text('Página 3')),\n  ],\n)"
+      },
+      {
+        "nombre": "itemBuilder (para PageView.builder)",
+        "tipo": "PageViewIndexedWidgetBuilder",
+        "descripcion_extendida": "Una función de callback que construye las páginas de forma perezosa (solo cuando son necesarias) para PageView.builder. Esto es más eficiente para un gran número de páginas, similar a ListView.builder.",
+        "ejemplo_propiedad": "PageView.builder(\n  itemCount: 10, // Número total de páginas\n  itemBuilder: (BuildContext context, int index) {\n    return Center(child: Text('Página ${index + 1}'));\n  },\n)"
+      },
+      {
+        "nombre": "scrollDirection",
+        "tipo": "Axis",
+        "descripcion_extendida": "Define el eje a lo largo del cual las páginas pueden ser desplazadas. Puede ser `Axis.horizontal` (por defecto) o `Axis.vertical`.",
+        "ejemplo_propiedad": "PageView(\n  scrollDirection: Axis.vertical,\n  children: const [\n    Center(child: Text('Desliza Hacia Arriba/Abajo 1')),\n    Center(child: Text('Desliza Hacia Arriba/Abajo 2')),\n  ],\n)"
+      },
+      {
+        "nombre": "controller",
+        "tipo": "PageController",
+        "descripcion_extendida": "Un controlador que permite manipular programáticamente el PageView. Puedes usarlo para saltar a una página específica (`jumpToPage`) o animar la transición a una página (`animateToPage`).",
+        "ejemplo_propiedad": "PageController _pageController = PageController(initialPage: 0);\n\n// ... dentro de un StatefulWidget\nPageView(\n  controller: _pageController,\n  // ...\n)\n\n// En un botón:\nElevatedButton(\n  onPressed: () {\n    _pageController.animateToPage(2,\n      duration: const Duration(milliseconds: 300),\n      curve: Curves.easeIn,\n    );\n  },\n  child: const Text('Ir a Página 3'),\n);"
+      },
+      {
+        "nombre": "onPageChanged",
+        "tipo": "ValueChanged<int>",
+        "descripcion_extendida": "Una función de callback que se invoca cada vez que la página actualmente visible cambia. Recibe el índice de la nueva página como argumento. Útil para actualizar indicadores de página o el estado de la UI.",
+        "ejemplo_propiedad": "int _currentPage = 0;\n\n// ... dentro de un StatefulWidget\nPageView(\n  onPageChanged: (int index) {\n    setState(() {\n      _currentPage = index;\n    });\n  },\n  children: const [ /* ... */ ],\n)\n// Text('Página actual: $_currentPage');"
+      }
+    ],
+    "usos_comunes": [
+      "Implementar carruseles de imágenes o banners promocionales.",
+      "Crear flujos de onboarding (bienvenida) o tutoriales interactivos.",
+      "Diseñar interfaces de usuario con navegación basada en pestañas personalizadas.",
+      "Mostrar una serie de vistas relacionadas que el usuario puede explorar deslizando."
+    ],
+    "constructores_comunes": [
+      "PageView({Key? key, Axis scrollDirection = Axis.horizontal, PageController? controller, ScrollPhysics? physics, bool reverse = false, ValueChanged<int>? onPageChanged, List<Widget> children = const <Widget>[]})",
+      "PageView.builder({Key? key, Axis scrollDirection = Axis.horizontal, PageController? controller, ScrollPhysics? physics, bool reverse = false, ValueChanged<int>? onPageChanged, required IndexedWidgetBuilder itemBuilder, int? itemCount})"
+    ],
+    "widgets_relacionados":
+     [
+      "PageController (para controlar el desplazamiento del PageView)",
+      "DotsIndicator (un paquete común para indicadores de página visuales)",
+      "ListView (para listas de desplazamiento genéricas)",
+      "CarouselSlider (paquete de terceros para carruseles más complejos)",
+      "TabBarView (para navegación por pestañas integrada con TabBar)"
+    ],
+    "cuando_no_usar": "No uses `PageView` si:\n- La colección de elementos es muy grande y el usuario necesita verlos en un desplazamiento continuo sin el concepto de 'páginas' discretas (usa `ListView.builder`).\n- Necesitas superponer widgets uno encima del otro sin deslizamiento de página (usa `Stack`).\n- Estás construyendo una navegación principal con un número fijo y pequeño de destinos que son mejor servidos por `BottomNavigationBar` o `TabBar` con `TabBarView`.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass PageViewExample extends StatefulWidget {\n  const PageViewExample({super.key});\n\n  @override\n  State<PageViewExample> createState() => _PageViewExampleState();\n}\n\nclass _PageViewExampleState extends State<PageViewExample> {\n  final PageController _pageController = PageController();\n  int _currentPage = 0;\n\n  @override\n  void dispose() {\n    _pageController.dispose();\n    super.dispose();\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('PageView Example')),\n      body: Column(\n        children: [\n          Expanded(\n            child: PageView(\n              controller: _pageController,\n              onPageChanged: (int index) {\n                setState(() {\n                  _currentPage = index;\n                });\n              },\n              children: [\n                _buildPage(Colors.red.shade200, 'Bienvenido', 'Desliza para empezar.'),\n                _buildPage(Colors.green.shade200, 'Explora', 'Descubre nuevas funciones.'),\n                _buildPage(Colors.blue.shade200, 'Disfruta', 'Tu viaje comienza aquí.'),\n              ],\n            ),\n          ),\n          // Indicadores de página básicos\n          Padding(\n            padding: const EdgeInsets.all(16.0),\n            child: Row(\n              mainAxisAlignment: MainAxisAlignment.center,\n              children: List.generate(3, (index) {\n                return AnimatedContainer(\n                  duration: const Duration(milliseconds: 150),\n                  margin: const EdgeInsets.symmetric(horizontal: 4.0),\n                  height: 10.0,\n                  width: _currentPage == index ? 24.0 : 10.0,\n                  decoration: BoxDecoration(\n                    color: _currentPage == index ? Colors.blueAccent : Colors.grey,\n                    borderRadius: BorderRadius.circular(5.0),\n                  ),\n                );\n              }),\n            ),\n          ),\n          // Botones para navegar programáticamente\n          Row(\n            mainAxisAlignment: MainAxisAlignment.spaceEvenly,\n            children: [\n              ElevatedButton(\n                onPressed: _currentPage > 0\n                    ? () {\n                        _pageController.previousPage(\n                          duration: const Duration(milliseconds: 300),\n                          curve: Curves.easeIn,\n                        );\n                      }\n                    : null,\n                child: const Text('Anterior'),\n              ),\n              ElevatedButton(\n                onPressed: _currentPage < 2\n                    ? () {\n                        _pageController.nextPage(\n                          duration: const Duration(milliseconds: 300),\n                          curve: Curves.easeIn,\n                        );\n                      }\n                    : null,\n                child: const Text('Siguiente'),\n              ),\n            ],\n          ),\n          const SizedBox(height: 20),\n        ],\n      ),\n    );\n  }\n\n  Widget _buildPage(Color color, String title, String subtitle) {\n    return Container(\n      color: color,\n      child: Column(\n        mainAxisAlignment: MainAxisAlignment.center,\n        children: [\n          Text(title, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),\n          const SizedBox(height: 10),\n          Text(subtitle, style: const TextStyle(fontSize: 18)),\n        ],\n      ),\n    );\n  }\n}",
+    "imagen": "assets/PageView.jpg",
+    "ruta": "/Page_PageView"
+},
+{
+    "nombre": "Stack",
+    "descripcion": "Un widget que permite superponer múltiples widgets uno encima del otro a lo largo del eje Z (profundidad). Los hijos se dibujan en el orden en que aparecen en la lista, de abajo hacia arriba. Es ideal para crear interfaces donde los elementos se colocan en capas, como insignias de notificación, botones flotantes o texto sobre imágenes.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "children",
+        "tipo": "List<Widget>",
+        "descripcion_extendida": "La lista de widgets que se superpondrán. El orden de los widgets en esta lista determina su orden de apilamiento: el primer widget es el más bajo en la pila, y el último es el más alto (frontal).",
+        "ejemplo_propiedad": "Stack(\n  children: const [\n    Image.network('https://picsum.photos/400/300'),\n    Align(\n      alignment: Alignment.bottomCenter,\n      child: Text('Texto sobre imagen', style: TextStyle(color: Colors.white)),\n    ),\n    Positioned(\n      top: 10, right: 10,\n      child: Icon(Icons.star, color: Colors.yellow, size: 30),\n    ),\n  ],\n)"
+      },
+      {
+        "nombre": "alignment",
+        "tipo": "AlignmentGeometry",
+        "descripcion_extendida": "Cómo se alinean los hijos no posicionados dentro del Stack. Por defecto, es `AlignmentDirectional.topStart` (esquina superior izquierda).",
+        "ejemplo_propiedad": "Stack(\n  alignment: Alignment.center, // Todos los hijos no posicionados se centran\n  children: [\n    Container(width: 200, height: 200, color: Colors.blue),\n    Container(width: 100, height: 100, color: Colors.red),\n  ],\n)"
+      },
+      {
+        "nombre": "fit",
+        "tipo": "StackFit",
+        "descripcion_extendida": "Determina cómo los hijos no posicionados se ajustan al tamaño del Stack.\n- `StackFit.loose` (por defecto): Los hijos pueden ser tan grandes como quieran (su tamaño intrínseco).\n- `StackFit.expand`: Los hijos no posicionados se expanden para llenar el Stack.",
+        "ejemplo_propiedad": "Stack(\n  fit: StackFit.expand, // El Container se expande para llenar el Stack\n  children: [\n    Container(color: Colors.yellow),\n    Center(child: Text('Expandido')),\n  ],\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Colocar un `FloatingActionButton` sobre el contenido principal de una pantalla.",
+      "Mostrar insignias de notificación (badges) sobre iconos o avatares.",
+      "Superponer texto, controles o elementos gráficos sobre imágenes de fondo o videos.",
+      "Crear efectos de UI donde los elementos se mueven de forma independiente sobre un fondo o capa base."
+    ],
+    "constructores_comunes": [
+      "Stack({Key? key, AlignmentDirectional alignment = AlignmentDirectional.topStart, TextDirection? textDirection, StackFit fit = StackFit.loose, Clip clipBehavior = Clip.hardEdge, List<Widget> children = const <Widget>[]})"
+    ],
+    "widgets_relacionados": [
+      "Positioned (para posicionar hijos de Stack con coordenadas absolutas)",
+      "Align (para alinear hijos de Stack a puntos específicos)",
+      "Container (comúnmente usado como fondo o elementos dentro del Stack)",
+      "Column, Row (para layouts lineales, no de superposición)"
+    ],
+    "cuando_no_usar": "No uses `Stack` si:\n- Necesitas organizar widgets en una secuencia lineal (vertical u horizontal). Usa `Column` o `Row` en su lugar.\n- El objetivo es crear una cuadrícula de elementos. Usa `GridView`.\n- Solo necesitas agregar un espacio alrededor de un widget. Usa `Padding` o `SizedBox`.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass StackExample extends StatelessWidget {\n  const StackExample({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('Stack Example')),\n      body: Center(\n        child: Stack(\n          alignment: Alignment.center, // Alinea los hijos no posicionados al centro\n          children: [\n            // Widget de fondo (el más bajo en la pila)\n            Container(\n              width: 300, height: 300,\n              color: Colors.blueGrey.shade800,\n            ),\n            // Texto superpuesto\n            const Text(\n              'Flutter Power!',\n              style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),\n            ),\n            // Ícono posicionado en la esquina inferior derecha\n            Positioned(\n              bottom: 20,\n              right: 20,\n              child: Container(\n                padding: const EdgeInsets.all(8.0),\n                decoration: BoxDecoration(\n                  color: Colors.amberAccent,\n                  borderRadius: BorderRadius.circular(10),\n                ),\n                child: const Icon(Icons.flash_on, color: Colors.deepOrange, size: 40),\n              ),\n            ),\n            // Círculo con número (ejemplo de badge)\n            Positioned(\n              top: 30, \n              left: 30,\n              child: Container(\n                padding: const EdgeInsets.all(6),\n                decoration: BoxDecoration(\n                  color: Colors.red,\n                  borderRadius: BorderRadius.circular(15),\n                  border: Border.all(color: Colors.white, width: 2)\n                ),\n                constraints: const BoxConstraints(\n                  minWidth: 30,\n                  minHeight: 30,\n                ),\n                child: const Text(\n                  '99+',\n                  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),\n                  textAlign: TextAlign.center,\n                ),\n              ),\n            )\n          ],\n        ),\n      ),\n    );\n  }\n}",
+    "imagen": "assets/Stack.jpg",
+    "ruta": "/Page_Stack"
+},
+{
+    "nombre": "ClipRRect",
+    "descripcion": "Un widget que recorta a su hijo en un rectángulo con esquinas redondeadas. Es muy útil para dar un aspecto más suave y moderno a imágenes, contenedores o cualquier otro widget visual.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "borderRadius",
+        "tipo": "BorderRadiusGeometry",
+        "descripcion_extendida": "Define el radio de las esquinas que se aplicará al hijo. Es una propiedad obligatoria.\n- `BorderRadius.circular(radius)`: Aplica el mismo radio a todas las esquinas.\n- `BorderRadius.only(...)`: Permite especificar radios diferentes para esquinas individuales (topLeft, topRight, bottomLeft, bottomRight).",
+        "ejemplo_propiedad": "// Radio uniforme en todas las esquinas\nClipRRect(\n  borderRadius: BorderRadius.circular(15.0),\n  child: Image.network('https://picsum.photos/200/200?random=4'),\n)\n\n// Radios diferentes\nClipRRect(\n  borderRadius: const BorderRadius.only(\n    topLeft: Radius.circular(20.0),\n    bottomRight: Radius.circular(50.0),\n  ),\n  child: Container(width: 150, height: 150, color: Colors.teal),\n)"
+      },
+      {
+        "nombre": "child",
+        "tipo": "Widget",
+        "descripcion_extendida": "El widget que será recortado con las esquinas redondeadas. `ClipRRect` no tiene una representación visual propia, solo modifica la forma de su hijo.",
+        "ejemplo_propiedad": "ClipRRect(\n  borderRadius: BorderRadius.circular(8.0),\n  child: Container(width: 100, height: 100, color: Colors.orange,\n    child: const Center(child: Text('Recortado'))),\n)"
+      },
+      {
+        "nombre": "clipBehavior",
+        "tipo": "Clip",
+        "descripcion_extendida": "Cómo se recorta el contenido que excede los límites. Por defecto es `Clip.antiAlias` para un suavizado de bordes. Otros valores pueden afectar el rendimiento o la calidad del recorte (ej. `Clip.hardEdge`).",
+        "ejemplo_propiedad": "ClipRRect(\n  borderRadius: BorderRadius.circular(10.0),\n  clipBehavior: Clip.antiAliasWithSaveLayer, // Para escenarios avanzados\n  child: Container(width: 100, height: 100, color: Colors.blue),\n)"
+      }
+    ],
+    "usos_comunes": [
+      "Dar un aspecto suave y moderno a las imágenes de perfil o de productos.",
+      "Redondear las esquinas de `Containers`, `Cards` o `ElevatedButtons` para diseños personalizados.",
+      "Asegurar que el contenido (como videos incrustados o mapas) se muestre con esquinas redondeadas.",
+      "Combinar con `BoxDecoration` en `Container` para un control completo de bordes y fondos."
+    ],
+    "constructores_comunes": [
+      "ClipRRect({Key? key, required BorderRadiusGeometry borderRadius, Clip clipBehavior = Clip.antiAlias, Widget? child})"
+    ],
+    "widgets_relacionados": [
+      "Container (a menudo se usa con ClipRRect para redondear sus bordes)",
+      "Image (comúnmente envuelto en ClipRRect)",
+      "Card (ya tiene una propiedad `borderRadius`, pero ClipRRect es más general)",
+      "ClipOval (para recortar a una forma ovalada/circular)",
+      "ClipPath (para recortar a una forma personalizada)"
+    ],
+    "cuando_no_usar": "No uses `ClipRRect` si:\n- El widget hijo ya tiene su propia propiedad `borderRadius` (ej. `Container` con `BoxDecoration`, `Card`). Es más eficiente usar la propiedad interna.\n- Necesitas una forma de recorte que no sea un rectángulo redondeado (ej. un círculo, un polígono irregular). Usa `ClipOval` o `ClipPath`.\n- El rendimiento es crítico y no necesitas el suavizado de bordes, podrías usar un `BorderRadius` directamente en un `BoxDecoration` si el fondo es sólido.",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass ClipRRectExample extends StatelessWidget {\n  const ClipRRectExample({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('ClipRRect Example')),\n      body: Center(\n        child: Column(\n          mainAxisAlignment: MainAxisAlignment.spaceEvenly,\n          children: [\n            // Imagen con esquinas redondeadas\n            ClipRRect(\n              borderRadius: BorderRadius.circular(20.0),\n              child: Image.network(\n                'https://picsum.photos/250/200?random=5',\n                width: 250,\n                height: 200,\n                fit: BoxFit.cover,\n              ),\n            ),\n            // Contenedor con esquinas muy redondeadas\n            ClipRRect(\n              borderRadius: BorderRadius.circular(50.0), // Para un círculo o forma ovalada\n              child: Container(\n                width: 150,\n                height: 150,\n                color: Colors.deepPurple,\n                child: const Center(\n                  child: Text(\n                    '¡Clip!',\n                    style: TextStyle(color: Colors.white, fontSize: 24),\n                  ),\n                ),\n              ),\n            ),\n            // Un Card con ClipRRect (aunque Card ya tiene su propio borderRadius)\n            // Esto demuestra que se puede aplicar a cualquier Widget\n            ClipRRect(\n              borderRadius: BorderRadius.circular(12.0),\n              child: Card(\n                elevation: 5,\n                child: Padding(\n                  padding: const EdgeInsets.all(20.0),\n                  child: Text('Tarjeta con ClipRRect'),\n                ),\n              ),\n            )\n          ],\n        ),\n      ),\n    );\n  }\n}",
+    "imagen": "assets/ClipRRect.jpg",
+    "ruta": "/Page_ClipRRect"
+},
+
+{
+    "nombre": "BottomNavigationBar",
+    "descripcion": "Un widget de Material Design que proporciona una barra de navegación en la parte inferior de la pantalla. Permite a los usuarios cambiar rápidamente entre un número pequeño (generalmente 3-5) de destinos de nivel superior en la aplicación, siendo un componente clave para la navegación principal.",
+    "propiedades_detalladas": [
+      {
+        "nombre": "items",
+        "tipo": "List<BottomNavigationBarItem>",
+        "descripcion_extendida": "**Obligatoria**. Una lista de `BottomNavigationBarItem`s, donde cada ítem representa una 'pestaña' en la barra de navegación. Cada `BottomNavigationBarItem` requiere un `icon` y opcionalmente un `label` (texto).",
+        "ejemplo_propiedad": "items: const <BottomNavigationBarItem>[\n  BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),\n  BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Buscar'),\n  BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),\n],"
+      },
+      {
+        "nombre": "onTap",
+        "tipo": "ValueChanged<int>",
+        "descripcion_extendida": "**Obligatoria**. Una función de callback que se invoca cuando el usuario toca un ítem de la barra de navegación. Recibe el `index` (posición) del ítem seleccionado. Es crucial para actualizar el estado de la aplicación y mostrar el contenido de la página correspondiente.",
+        "ejemplo_propiedad": "int _selectedIndex = 0;\n// ...\nonTap: (int index) {\n  setState(() {\n    _selectedIndex = index;\n  });\n},"
+      },
+      {
+        "nombre": "currentIndex",
+        "tipo": "int",
+        "descripcion_extendida": "**Obligatoria**. El índice del `BottomNavigationBarItem` que está actualmente seleccionado. Flutter usa este valor para resaltar visualmente el ítem activo. Debes actualizar este valor en tu `setState` en el callback `onTap`.",
+        "ejemplo_propiedad": "currentIndex: _selectedIndex, // Donde _selectedIndex es la variable de estado actual"
+      },
+      {
+        "nombre": "type",
+        "tipo": "BottomNavigationBarType",
+        "descripcion_extendida": "Define el comportamiento de diseño de los ítems:\n- `BottomNavigationBarType.fixed`: Los ítems tienen un ancho fijo y el fondo es estático (por defecto para 3 o menos ítems).\n- `BottomNavigationBarType.shifting`: El ítem seleccionado se agranda ligeramente y el color de fondo puede cambiar (por defecto para más de 3 ítems).",
+        "ejemplo_propiedad": "type: BottomNavigationBarType.fixed,"
+      },
+      {
+        "nombre": "selectedItemColor",
+        "tipo": "Color?",
+        "descripcion_extendida": "El color de los íconos y etiquetas del ítem que está seleccionado.",
+        "ejemplo_propiedad": "selectedItemColor: Colors.blueAccent,"
+      },
+      {
+        "nombre": "unselectedItemColor",
+        "tipo": "Color?",
+        "descripcion_extendida": "El color de los íconos y etiquetas de los ítems que no están seleccionados.",
+        "ejemplo_propiedad": "unselectedItemColor: Colors.grey,"
+      },
+      {
+        "nombre": "backgroundColor",
+        "tipo": "Color?",
+        "descripcion_extendida": "El color de fondo de toda la barra de navegación.",
+        "ejemplo_propiedad": "backgroundColor: Colors.white,"
+      }
+    ],
+    "usos_comunes": [
+      "Implementar la navegación principal de nivel superior en la mayoría de las aplicaciones móviles (ej., Home, Search, Profile).",
+      "Proporcionar un acceso rápido y constante a las secciones clave de la aplicación desde cualquier pantalla.",
+      "Cuando se requiere un diseño de navegación claro y siguiendo las directrices de Material Design."
+    ],
+    "constructores_comunes": [
+      "BottomNavigationBar({Key? key, required List<BottomNavigationBarItem> items, ValueChanged<int>? onTap, int currentIndex = 0, double? elevation, BottomNavigationBarType? type, Color? fixedColor, Color? backgroundColor, Color? selectedItemColor, Color? unselectedItemColor, IconThemeData? selectedIconTheme, IconThemeData? unselectedIconTheme, TextStyle? selectedLabelStyle, TextStyle? unselectedLabelStyle, bool? showSelectedLabels, bool? showUnselectedLabels, MouseCursor? mouseCursor, bool enableFeedback = true, BottomNavigationBarLandscapeLayout? landscapeLayout})"
+    ],
+    "widgets_relacionados": [
+      "Scaffold (es donde típicamente se coloca BottomNavigationBar)",
+      "BottomNavigationBarItem (los elementos individuales de la barra)",
+      "TabBar / TabBarView (para navegación con pestañas en la parte superior)",
+      "Drawer (para menús de navegación laterales, útiles para más de 5 destinos)",
+      "PageView (a menudo se combina con BottomNavigationBar para cambiar el contenido de la página)"
+    ],
+    "cuando_no_usar": "No uses `BottomNavigationBar` si:\n- Tienes más de 5 destinos de navegación principales (considera un `Drawer` o `TabBar`).\n- La navegación es secundaria o contextual (dentro de una sección específica de la app).\n- Necesitas una barra de aplicación en la parte inferior con un `FloatingActionButton` centrado y sobresaliendo (en ese caso, `BottomAppBar` es más apropiado).",
+    "codigo": "import 'package:flutter/material.dart';\n\nclass BottomNavigationBarExampleMinimal extends StatefulWidget {\n  const BottomNavigationBarExampleMinimal({super.key});\n\n  @override\n  State<BottomNavigationBarExampleMinimal> createState() => _BottomNavigationBarExampleMinimalState();\n}\n\nclass _BottomNavigationBarExampleMinimalState extends State<BottomNavigationBarExampleMinimal> {\n  int _selectedIndex = 0;\n\n  static const List<Widget> _pages = <Widget>[\n    Center(child: Text('Inicio', style: TextStyle(fontSize: 24))), \n    Center(child: Text('Buscar', style: TextStyle(fontSize: 24))), \n    Center(child: Text('Perfil', style: TextStyle(fontSize: 24))), \n  ];\n\n  void _onItemTapped(int index) {\n    setState(() {\n      _selectedIndex = index;\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('Bottom Nav Bar Minimal')),\n      body: _pages.elementAt(_selectedIndex),\n      bottomNavigationBar: BottomNavigationBar(\n        items: const <BottomNavigationBarItem>[\n          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),\n          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),\n          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),\n        ],\n        currentIndex: _selectedIndex,\n        selectedItemColor: Colors.amber[800],\n        onTap: _onItemTapped,\n      ),\n    );\n  }\n}",
+    "imagen": "assets/BottomNavigationBar.jpg",
+    "ruta": "/Page_BottomNavigationBar"
+}
+]
