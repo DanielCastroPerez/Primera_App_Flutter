@@ -38,7 +38,17 @@ El proyecto cubre los siguientes temas con ejemplos prácticos:
 
 ##  Capturas de Pantalla
 
-*(Espacio reservado para agregar capturas de pantalla de la aplicación en funcionamiento)*
+<img src="screenshots/Inicio_APP.png" width="260">
+<img src="screenshots/widget_scaffold.png" width="260">
+<img src="screenshots/widget_scaffold_2.png" width="260">
+<img src="screenshots/scaffold_descripcion.png" width="260">
+<img src="screenshots/Navigator.png" width="260">
+
+<img src="screenshots/Navigator_descripcion.png" width="260">
+<img src="screenshots/Navigator_Ejemplo_Uso.png" width="260">
+<img src="screenshots/Drawer_inicio.png" width="260">
+<img src="screenshots/Drawer_descripcion.png" width="260">
+<img src="screenshots/Drawer_descripcion_2.png" width="260">
 
 ##  Estructura del Proyecto
 
@@ -49,21 +59,6 @@ El código fuente principal se encuentra en la carpeta `lib/`:
     *   `Code_example/`: Contiene ejemplos específicos adicionales.
 
 ##  Comenzando
-
-<img src="screenshots/Inicio_APP.png" width="260">
-<img src="screenshots/widget_scaffold.png" width="260">
-<img src="screenshots/widget_scaffold_2.png" width="260">
-<img src="screenshots/scaffold_descripcion.png" width="260">
-
-
-<img src="screenshots/Navigator.png" width="260">
-<img src="screenshots/Navigator_descripcion.png.png" width="260">
-<img src="screenshots/Navigator_Ejemplo_Uso.png.png" width="260">
-
-<img src="screenshots/Drawer_inicio.png.png" width="260">
-<img src="screenshots/Drawer_descripcion.png.png" width="260">
-<img src="screenshots/Drawer_descripcion_2.png.png" width="260">
-
 
 1.  **Requisitos**: Asegúrate de tener Flutter instalado y configurado.
 2.  **Clonar/Descargar**: Obtén el código fuente.
