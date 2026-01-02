@@ -1,59 +1,78 @@
+# Practica Daniel - Glosario Flutter
 
-## Instalación de la librería `google_fonts`
+Este proyecto es una aplicación de práctica y referencia diseñada para aprender y demostrar el uso de diversos widgets fundamentales de Flutter. Funciona como un glosario interactivo donde cada "página" ilustra la implementación de un widget específico.
 
-Para usar **google\_fonts**, debes agregar la siguiente dependencia en tu archivo **pubspec.yaml**:
+## Descripción
 
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  google_fonts: ^2.1.0
-```
+La aplicación está estructurada con un menú principal que permite navegar a diferentes ejemplos de código. Es ideal para principiantes que buscan entender cómo funcionan componentes básicos y diseños en Flutter.
 
-Luego, ejecuta el siguiente comando en la terminal para instalar las dependencias:
+## Widgets y Características Incluidas
 
-```bash
-flutter pub get
-```
+El proyecto cubre los siguientes temas con ejemplos prácticos:
 
-Para utilizar la librería, impórtala en tu archivo **main.dart**:
+*   **Fundamentos de UI**:
+    *   `Container`: Uso de contenedores para diseño y decoración.
+    *   `Text`: Estilos y manipulación de texto.
+    *   `Image`: Carga y visualización de imágenes (desde assets o red).
+    *   `Scaffold`: Estructura básica visual de una app Material Design.
+    *   `AppBar`: Barras de aplicación superiores.
 
-```dart
-import 'package:google_fonts/google_fonts.dart';
-```
+*   **Layouts (Diseño)**:
+    *   `Row` y `Column`: Organización horizontal y vertical de widgets.
+    *   `Padding`: Manejo de espacios y márgenes.
+    *   `SingleChildScrollView`: Implementación de scroll básico.
+    *   `GridView`:
+        *   `GridView.builder`: Grillas dinámicas y optimizadas.
+        *   `GridView.count`: Grillas con número fijo de columnas.
 
-### Ejemplo de uso
+*   **Componentes Interactivos y de Navegación**:
+    *   `Navigator`: Navegación entre pantallas.
+    *   `Drawer`: Menú lateral desplegable.
+    *   `Card`: Tarjetas con sombra y bordes redondeados.
+    *   `ListTile`: Elementos de lista estándar con título, subtítulo e iconos.
+    *   `GestureDetector`: Detección de gestos y toques en pantalla.
 
-```dart
-Text(
-  'Hola Mundo',
-  style: GoogleFonts.lato(
-    color: Colors.red,
-    fontSize: 30,
-    fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.italic,
-  ),
-)
-```
+*   **Configuración General**:
+    *   `MaterialApp`: Configuración raíz de la aplicación Flutter.
+    *   **Pantalla de Bienvenida**: `Page_Welcome`.
 
----
+##  Capturas de Pantalla
 
-## Pasos para cargar archivos JSON
+*(Espacio reservado para agregar capturas de pantalla de la aplicación en funcionamiento)*
 
-1. Dentro de la carpeta **assets**, crea una carpeta llamada **data**.
-2. Agrega tu archivo JSON en la carpeta **data** con el nombre **widgets.json**.
-3. En tu archivo **pubspec.yaml**, dentro de `flutter:`, agrega lo siguiente:
+##  Estructura del Proyecto
 
-   ```yaml
-   assets:
-     - assets/data/widgets.json
-   ```
-4. En tu archivo **main.dart**, añade el siguiente código para cargar los datos del JSON:
+El código fuente principal se encuentra en la carpeta `lib/`:
 
-   ```dart
-   Future<Widget> _getData() async {
-     final response = await http.get(Uri.parse('assets/data/widgets.json'));
-     final data = jsonDecode(response.body);
-     return data;
-   }
-   ```
+*   `main.dart`: Punto de entrada de la aplicación. Define las rutas y el tema principal.
+*   `pages/`: Contiene todas las pantallas individuales para cada widget de práctica.
+    *   `Code_example/`: Contiene ejemplos específicos adicionales.
+
+##  Comenzando
+
+<img src="screenshots/Inicio_APP.png" width="260">
+<img src="screenshots/widget_scaffold.png" width="260">
+<img src="screenshots/widget_scaffold_2.png" width="260">
+<img src="screenshots/scaffold_descripcion.png" width="260">
+
+
+<img src="screenshots/Navigator.png" width="260">
+<img src="screenshots/Navigator_descripcion.png.png" width="260">
+<img src="screenshots/Navigator_Ejemplo_Uso.png.png" width="260">
+
+<img src="screenshots/Drawer_inicio.png.png" width="260">
+<img src="screenshots/Drawer_descripcion.png.png" width="260">
+<img src="screenshots/Drawer_descripcion_2.png.png" width="260">
+
+
+1.  **Requisitos**: Asegúrate de tener Flutter instalado y configurado.
+2.  **Clonar/Descargar**: Obtén el código fuente.
+3.  **Instalar dependencias**:
+    ```bash
+    flutter pub get
+    ```
+4.  **Ejecutar**:
+    ```bash
+    flutter run
+    ```
+
